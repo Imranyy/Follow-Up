@@ -1,4 +1,5 @@
 import './css/App.css';
+import './css/responsive.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
@@ -16,7 +17,7 @@ function App() {
       <Route path='/' element={<LandingPage/>}/>
       <Route path='/login' element={<SignIn/>}/>
       <Route path='/register' element={<SignUp/>}/>
-      <Route path='/Home' element={<Home/>}/>
+      <Route path='/home' element={<Home/>}/>
       <Route path='/:id' element={<Detail/>}/>
       <Route path='/add' element={<AddPodcast/>}/>
       <Route path='*' element={<NotFound/>}/>

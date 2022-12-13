@@ -1,0 +1,7 @@
+
+@supports(backdrop-filter: blur(2rem)){
+    .menu-list{
+      background:  rgb(224, 217, 204);
+      backdrop-filter: blur(3rem);
+    }
+  }
