@@ -1,16 +1,29 @@
 import React,{useState} from 'react';
 
 function Home(props) {
+    let device=navigator.mediaDevices.getUserMedia({audio:true}); //access the user audio device
     const [recordBtn,setRecordBtn]=useState('');
+    const [audioTitle,setAudioTitle]=useState('');
+    const [results,setResults]=useState(
+        <input type='text' onChange={e=>setAudioTitle(e.target.value)} placeholder='Audio Title' onKeyDown={showRecordBtn} required/>
+    );
+
     //audio recording
    const  startRecording=()=>{
-    let device=navigator.mediaDevices.getUserMedia({audio:true});
+    setRecordBtn(
+            <button type='button'>recording...</button>
+    )
+    setResults(
+        <>
+             <div className='audio'></div>
+        </>
+    )
     let items=[];
     device.then(stream=>{
         let recorder=new MediaRecorder(stream);
         recorder.ondataavailable=e=>{
             items.push(e.data);
-            if(recorder.state=='inactive'){
+            if(recorder.state==='inactive'){
                 let blob=new Blob(items,{
                     type:'audio/webm'
                 });
@@ -23,26 +36,34 @@ function Home(props) {
         }
         recorder.start();
         setTimeout(()=>{
-            recorder.stop()
+            recorder.stop();
+            setRecordBtn(<button>Submit</button>)
         },5000);
     })
    }
 
-    const showRecordBtn=()=>{
+    function showRecordBtn(){
         setRecordBtn(
             <button onClick={startRecording} type='button'>Start Recording</button>
         );
     }
+    //submitting audio to api
     const submitAudio=async(e)=>{
         e.preventDefault();
+        const url='';
+        await fetch(url,{
+            method:'POST',
+            body:JSON.stringify({
+                audioTitle,
+            }),
+            headers:{
+                'content-type':'application/json'
+            }
+        })
     }
     return (
         <>
             <div className='home start'>
-                <div className='audio'>
-
-                </div>
-
                 <div className='grid-podcast'>
                     <div className='grid-item'>
                         <div className='card'>
@@ -67,8 +88,8 @@ function Home(props) {
                     </div>
                 </div>
 
-                <form>
-                    <input type='text' placeholder='Audio Title' onKeyDown={showRecordBtn} required/>
+                <form onSubmit={submitAudio}>
+                    {results}
                     {recordBtn}
                 </form>
             </div>

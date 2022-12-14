@@ -103,6 +103,7 @@ button:hover{
 
 }
 .home form{
+  display: flex;
   position: fixed;
   bottom: 50px;
   width: 100vw;
@@ -124,4 +125,10 @@ button:hover{
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.home .audio source{
+  background: steelblue;
+  margin-right: 50px;
+  width: 50vw;
+  height: 30px;
 }
