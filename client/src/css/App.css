@@ -102,3 +102,26 @@ button:hover{
 .card:hover{
 
 }
+.home form{
+  position: fixed;
+  bottom: 50px;
+  width: 100vw;
+  padding: 0 0 0 50px;
+}
+.home form input{
+  width: 80vw;
+  height: 30px;
+  padding-left: 20px;
+  border-radius: 5px;
+  border:  solid 1px grey;
+  margin-right: 10px;
+}
+.home form button{
+  height: 35px;
+  width: 100px;
+  color:white;
+  background: orange;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
