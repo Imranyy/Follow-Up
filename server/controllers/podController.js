@@ -4,7 +4,7 @@ const uploadAudio=async(req,res)=>{
     if(req.files==null){
         res.status(400).send({msg:'No file was uploaded'});
     }
-    const file=req.files.file;
+    const file=req.files.audio;
     file.mv(`${__dirname}/public/audio/${file.name}`,err=>{
         if(err){
             res.send(err)

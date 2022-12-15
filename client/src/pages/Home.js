@@ -6,6 +6,7 @@ function Home(props) {
     const [recordBtn,setRecordBtn]=useState('');
     const [audioTitle,setAudioTitle]=useState('');
     const [audioFile,setAudioFile]=useState('');
+    const [uploadedFile,setUploadedFile]=useState('');
     const [results,setResults]=useState(
         <input type='text' onChange={e=>setAudioTitle(e.target.value)} placeholder='Audio Title' onKeyDown={showRecordBtn} required/>
     );
@@ -61,20 +62,28 @@ function Home(props) {
     }
     //submitting audio to api
     async function submitAudio(e){
-        // document.querySelector('.home form input').style.display='block';
-        // document.querySelector('.home .add-btn').style.display='block';
         e.preventDefault();
-        const url='';
-        await fetch(url,{
+        const formData=new FormData();
+        formData.append('audio',audioFile);
+        try {
+            const url='http://localhost:5000/api/upload';
+           const response= await fetch(url,{
             method:'POST',
             body:JSON.stringify({
                 title:audioTitle,
-                file:audioFile
+                formData
             }),
             headers:{
                 'content-type':'multipart/form-data'
             }
-        })
+        });
+        const parseRes=await response.json();
+        toast.success(parseRes.msg);
+        setUploadedFile(parseRes.fileName, parseRes.filePath)
+        } catch (error) {
+            console.log(error);
+            toast.error(error);
+        }
     }
     function showForm(){
        document.querySelector('.home form input').style.display='block';
@@ -83,7 +92,6 @@ function Home(props) {
     return (
         <>
             <div className='home start'>
-                {audioFile.split(1,)}
                 <div className='grid-podcast'>
                     <div className='grid-item'>
                         <div className='card'>

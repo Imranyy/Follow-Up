@@ -2,7 +2,7 @@ import './css/App.css';
 import './css/responsive.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import LandingPage from './pages/LandingPage';
+// import LandingPage from './pages/LandingPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
@@ -15,12 +15,12 @@ function App() {
     <Toaster/>
     <Navbar/>
     <Routes>
-      <Route path='/' element={<LandingPage/>}/>
+      <Route path='/' element={<Home/>}/>
       <Route path='/login' element={<SignIn/>}/>
       <Route path='/register' element={<SignUp/>}/>
-      <Route path='/home' element={<Home/>}/>
-      <Route path='/:id' element={<Detail/>}/>
+      <Route path='/audio/:id' element={<Detail/>}/>
       <Route path='*' element={<NotFound/>}/>
+      {/* <Route path='/' element={<LandingPage/>}/> */}
     </Routes> 
   </Router>
   );
