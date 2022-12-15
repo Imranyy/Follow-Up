@@ -1,8 +1,12 @@
 const express=require('express');
 const fileUpload=require('express-fileupload');
+const cors=require('cors');
 
 const app =express();
 app.use(fileUpload());
+
+//cors
+app.use(cors());
 
 //routes
 app.use('/api',require('./routes/api'));
