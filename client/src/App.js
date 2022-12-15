@@ -8,9 +8,11 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import NotFound from './pages/NotFound';
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
   <Router>
+    <Toaster/>
     <Navbar/>
     <Routes>
       <Route path='/' element={<LandingPage/>}/>

@@ -104,18 +104,18 @@ button:hover{
 }
 .home form{
   display: flex;
-  position: fixed;
+  position: fixed;  
   bottom: 50px;
-  width: 100vw;
+  width: 90vw;
   padding: 0 0 0 50px;
 }
 .home form input{
+  display: none;
   width: 80vw;
   height: 30px;
   padding-left: 20px;
   border-radius: 5px;
   border:  solid 1px grey;
-  margin-right: 10px;
 }
 .home form button{
   height: 35px;
@@ -125,10 +125,29 @@ button:hover{
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 10px;
 }
-.home .audio source{
-  background: steelblue;
-  margin-right: 50px;
+.home audio {
+  border: 2px solid orange;
+  border-radius: 10px;
   width: 50vw;
   height: 30px;
+}
+.home .add-btn{
+  width: 60px;
+  height: 60px;
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  background: orange;
+  border-radius: 80px;
+  border: none;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  transition: ease-out 10ms;
+}
+.home .add-btn:hover{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.9);
 }

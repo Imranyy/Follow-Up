@@ -18,7 +18,6 @@ function Navbar(props) {
                         <li><Link to='/home'>Home</Link></li>
                         <li><Link to='/login'>Sign In</Link></li>
                         <li><Link to='/register'>Sign Up</Link></li>
-                        <li><Link to='/add'>Add a podcast</Link></li>
                         <li><button onClick={showMenu} className='menu-btn'>Menu</button></li>
                     </ul>
                 
@@ -30,7 +29,6 @@ function Navbar(props) {
                     <li><Link to='/home' onClick={closeMenu}>Home</Link></li>
                     <li><Link to='/login' onClick={closeMenu}>Sign In</Link></li>
                     <li><Link to='/register' onClick={closeMenu}>Sign Up</Link></li>
-                    <li><Link to='/add' onClick={closeMenu}>Add a podcast</Link></li>
                 </ul>
 
             </div>

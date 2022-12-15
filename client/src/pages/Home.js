@@ -1,18 +1,19 @@
 import React,{useState} from 'react';
+import { toast } from 'react-hot-toast';
 
 function Home(props) {
     let device=navigator.mediaDevices.getUserMedia({audio:true}); //access the user audio device
     const [recordBtn,setRecordBtn]=useState('');
     const [audioTitle,setAudioTitle]=useState('');
+    const [audioFile,setAudioFile]=useState('');
     const [results,setResults]=useState(
         <input type='text' onChange={e=>setAudioTitle(e.target.value)} placeholder='Audio Title' onKeyDown={showRecordBtn} required/>
     );
 
     //audio recording
-   const  startRecording=()=>{
-    setRecordBtn(
-            <button type='button'>recording...</button>
-    )
+   function  startRecording(){
+    toast.success('Recording...');
+   
     setResults(
         <>
              <div className='audio'></div>
@@ -32,15 +33,26 @@ function Home(props) {
                 mainAudio.setAttribute('controls','controls');
                 audio.appendChild(mainAudio);
                 mainAudio.innerHTML=`<source src=${URL.createObjectURL(blob)} type="audio/webm"/>`
+                setAudioFile(URL.createObjectURL(blob))
             }
         }
         recorder.start();
-        setTimeout(()=>{
+        // setTimeout(()=>{
+        //     recorder.stop();
+        //     setRecordBtn(<button>Submit</button>)
+        // },5000);
+        
+         setRecordBtn(
+            <button onClick={stop} type='button'>Stop recording...</button>
+        )
+        function stop(){
             recorder.stop();
             setRecordBtn(<button>Submit</button>)
-        },5000);
+        }
     })
+    
    }
+   
 
     function showRecordBtn(){
         setRecordBtn(
@@ -48,22 +60,30 @@ function Home(props) {
         );
     }
     //submitting audio to api
-    const submitAudio=async(e)=>{
+    async function submitAudio(e){
+        // document.querySelector('.home form input').style.display='block';
+        // document.querySelector('.home .add-btn').style.display='block';
         e.preventDefault();
         const url='';
         await fetch(url,{
             method:'POST',
             body:JSON.stringify({
-                audioTitle,
+                title:audioTitle,
+                file:audioFile
             }),
             headers:{
-                'content-type':'application/json'
+                'content-type':'multipart/form-data'
             }
         })
+    }
+    function showForm(){
+       document.querySelector('.home form input').style.display='block';
+       document.querySelector('.home .add-btn').style.display='none';
     }
     return (
         <>
             <div className='home start'>
+                {audioFile.split(1,)}
                 <div className='grid-podcast'>
                     <div className='grid-item'>
                         <div className='card'>
@@ -92,6 +112,7 @@ function Home(props) {
                     {results}
                     {recordBtn}
                 </form>
+                <button className='add-btn' onClick={showForm}>+</button>
             </div>
         </>
     );
