@@ -1,16 +1,25 @@
 
 
 const uploadAudio=async(req,res)=>{
-    if(req.files==null){
-        res.status(400).send({msg:'No file was uploaded'});
-    }
-    const file=req.files.audio;
-    file.mv(`${__dirname}/public/audio/${file.name}`,err=>{
-        if(err){
-            res.send(err)
+    const {title,audio}=req.body;
+    // if(audio==null){
+    //     res.status(400).send({msg:'No file was uploaded'});
+    // }
+    res.send({
+        msg:'Audio sent successful',
+        results:{
+        title,
+        audio
         }
-        res.send({fileName:file.name, filePath:`/upload/${file.name}`})
     })
+    // //moving the audio file to /public/audio/filename on the client side
+    // audio.mv(`${__dirname}/public/audio/${audio.name}`,err=>{
+    //     if(err){
+    //         res.send(err)
+    //     }
+    //     //sending the file and the audio path back to the client
+    //     res.send({fileName:audio.name, filePath:`/upload/${audio.name}`})
+    // })
 }
 
 module.exports={

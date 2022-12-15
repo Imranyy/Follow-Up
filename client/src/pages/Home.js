@@ -1,12 +1,13 @@
 import React,{useState} from 'react';
 import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
 function Home(props) {
-    let device=navigator.mediaDevices.getUserMedia({audio:true}); //access the user audio device
+    let device=navigator.mediaDevices.getUserMedia({audio:true,video:false}); //access the user audio device
     const [recordBtn,setRecordBtn]=useState('');
     const [audioTitle,setAudioTitle]=useState('');
     const [audioFile,setAudioFile]=useState('');
-    const [uploadedFile,setUploadedFile]=useState('');
+    const [uploadedFile,setUploadedFile]=useState([]);
     const [results,setResults]=useState(
         <input type='text' onChange={e=>setAudioTitle(e.target.value)} placeholder='Audio Title' onKeyDown={showRecordBtn} required/>
     );
@@ -14,7 +15,6 @@ function Home(props) {
     //audio recording
    function  startRecording(){
     toast.success('Recording...');
-   
     setResults(
         <>
              <div className='audio'></div>
@@ -48,7 +48,8 @@ function Home(props) {
         )
         function stop(){
             recorder.stop();
-            setRecordBtn(<button>Submit</button>)
+            setRecordBtn('');
+            document.querySelector('form .submit-btn').style.display='block';
         }
     })
     
@@ -60,29 +61,30 @@ function Home(props) {
             <button onClick={startRecording} type='button'>Start Recording</button>
         );
     }
+
     //submitting audio to api
     async function submitAudio(e){
         e.preventDefault();
-        const formData=new FormData();
-        formData.append('audio',audioFile);
         try {
             const url='http://localhost:5000/api/upload';
-           const response= await fetch(url,{
-            method:'POST',
-            body:JSON.stringify({
+            const formData={
                 title:audioTitle,
-                formData
-            }),
-            headers:{
-                'content-type':'multipart/form-data'
+                audio:audioFile.slice(5)
             }
-        });
-        const parseRes=await response.json();
+           const response= await axios.post(url,formData,{
+            headers:{
+            //    'content-type':'application/json',
+               'content-type':'multipart/form-data'
+            }
+           })
+        const parseRes=await response.data;
         toast.success(parseRes.msg);
-        setUploadedFile(parseRes.fileName, parseRes.filePath)
+        console.log(parseRes);
+        setUploadedFile(parseRes.results);
+        // setUploadedFile(parseRes.fileName, parseRes.filePath)
         } catch (error) {
-            console.log(error);
-            toast.error(error);
+            console.log(error.message);
+            toast.error(error.message);
         }
     }
     function showForm(){
@@ -94,31 +96,22 @@ function Home(props) {
             <div className='home start'>
                 <div className='grid-podcast'>
                     <div className='grid-item'>
-                        <div className='card'>
-                            <h3>hello</h3>
-                            <p>hykjjklkkjkjjklnlk</p>
-                        </div>
-                    </div>
-                    <div className='grid-item'>
-                        <div className='card'>
-                            <h1>hello</h1>
-                        </div>
-                    </div>
-                    <div className='grid-item'>
-                        <div className='card'>
-                            <h1>hello</h1>
-                        </div>
-                    </div>
-                    <div className='grid-item'>
-                        <div className='card'>
-                            <h1>hello</h1>
-                        </div>
+                        {/* {uploadedFile&&uploadedFile.map(audio=>( */}
+                            <div className='card'>
+                                <h3>{uploadedFile.title}</h3>
+                                <p>{uploadedFile.audio}</p>
+                                <audio controls loop>
+                                    <source src={uploadedFile.audio} type="audio/webm"/>
+                                </audio>
+                            </div>
+                        {/* ))} */}
                     </div>
                 </div>
 
                 <form onSubmit={submitAudio}>
                     {results}
                     {recordBtn}
+                    <button className='submit-btn' style={{display:'none'}} type='submit'>Submit</button>
                 </form>
                 <button className='add-btn' onClick={showForm}>+</button>
             </div>
