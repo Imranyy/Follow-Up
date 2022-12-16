@@ -32,8 +32,8 @@ function Home(props) {
                 mainAudio.setAttribute('controls','controls');
                 audio.appendChild(mainAudio);
                 mainAudio.innerHTML=`<source src=${URL.createObjectURL(blob)} type="audio/webm"/>`
-                setAudioFile(URL.createObjectURL(blob))
-                // setAudioFile(blob)
+                // setAudioFile(URL.createObjectURL(blob))
+                setAudioFile(blob)
             }
         }
         recorder.start();
@@ -46,10 +46,8 @@ function Home(props) {
             document.querySelector('form .submit-btn').style.display='block';
         }
     })
-    
    }
    
-    //submitting audio to api
     async function submitAudio(e){
         e.preventDefault();
         //uploading audio to storage
@@ -62,7 +60,7 @@ function Home(props) {
                       console.log(url);
                       setUploadedAudioURL(url);
                      })
-                     //patch user image to db
+                    //submitting audio data to API
                      const url=`http:localhost:5000/api/upload`
                        const response=await fetch(url,{
                            method:'PATCH',
