@@ -15,7 +15,7 @@ function Navbar(props) {
                 <div className='nav-bar'>
                     <div className='brand-name'><Link to='/'>Podcast.🐌</Link></div>
                     <ul className='nav-item'>
-                        <li><Link to='/home'>Home</Link></li>
+                        <li><Link to='/'>Home</Link></li>
                         <li><Link to='/login'>Sign In</Link></li>
                         <li><Link to='/register'>Sign Up</Link></li>
                         <li><button onClick={showMenu} className='menu-btn'>Menu</button></li>
@@ -26,7 +26,7 @@ function Navbar(props) {
             <div className='menu-list'>
                 <button onClick={closeMenu}>Close</button>
                 <ul>
-                    <li><Link to='/home' onClick={closeMenu}>Home</Link></li>
+                    <li><Link to='/' onClick={closeMenu}>Home</Link></li>
                     <li><Link to='/login' onClick={closeMenu}>Sign In</Link></li>
                     <li><Link to='/register' onClick={closeMenu}>Sign Up</Link></li>
                 </ul>

@@ -120,7 +120,6 @@ function Home(props) {
             <div className='home start'>
                 {/* {audioFile} */}
                 <div className='grid-podcast'>
-                    <i class="fa-solid fa-browser"></i>
                     <div className='grid-item'>
                         {/* {uploadedFile&&uploadedFile.map(audio=>( */}
                             <div className='card'>
@@ -139,7 +138,7 @@ function Home(props) {
                     {recordBtn}
                     <button className='submit-btn' style={{display:'none'}} type='submit'>Submit</button>
                 </form>
-                <button className='add-btn' onClick={showForm}>+</button>
+                <button className='add-btn' onClick={showForm}><i class="fa-solid fa-browser"></i></button>
             </div>
         </>
     );
