@@ -6,7 +6,8 @@ function Home(props) {
     let device=navigator.mediaDevices.getUserMedia({audio:true,video:false}); //access the user audio device
     const [recordBtn,setRecordBtn]=useState('');
     const [audioFile,setAudioFile]=useState('');
-    const [uploadedFile,setUploadedFile]=useState('');
+    const [uploadedFile,setUploadedFile]=useState([]);
+    const [uploadedAudioURL,setUploadedAudioURL]=useState('');
     const [results,setResults]=useState('');
 
     //audio recording
@@ -51,70 +52,43 @@ function Home(props) {
     //submitting audio to api
     async function submitAudio(e){
         e.preventDefault();
-        try {
-            const url='http://localhost:5000/api/upload';
-            const formData={
-                audio:audioFile.slice(5)
-                // audio:audioFile
-            }
-           const response= await fetch(url,{
-            method:'POST',
-            body:JSON.stringify({
-                audio:audioFile
-            }),
-            headers:{
-                'content-type':'application/json'
-            }
-           })
-        const parseRes=await response.data;
-        toast.success(parseRes.msg);
-        console.log(parseRes);
-        setUploadedFile(parseRes.results);
-        // setUploadedFile(parseRes.fileName, parseRes.filePath)
-        } catch (error) {
-            console.log(error.message);
-            toast.error(error.message);
-        }
+        //uploading audio to storage
+            const storageRef=ref(projectStorage,`userAudio1`);
+            const uploadTask = uploadBytesResumable(storageRef, audioFile);
+            uploadTask.on('state_changed',
+             async()=>{
+                try {
+                     await getDownloadURL(storageRef).then((url)=>{
+                      console.log(url);
+                      setUploadedAudioURL(url);
+                     })
+                     //patch user image to db
+                     const url=`http:localhost:5000/api/upload`
+                       const response=await fetch(url,{
+                           method:'PATCH',
+                           body:JSON.stringify({
+                             audio:uploadedAudioURL
+                           }),
+                             headers:{
+                               'Content-Type':'application/json'
+                             }
+                       });
+                       const parseRes=await response.data;
+                       toast.success(parseRes.msg);
+                       console.log(parseRes);
+                       setUploadedFile(parseRes.results);
+                } catch (error) {
+                    console.log(error.message)
+                  toast.error("Try again!")
+                }
+          })
     }
+
     function showForm(){
         startRecording();
        document.querySelector('.home .add-btn').style.display='none';
     }
     
-  //upload audio 
-        const changeHandler=(e)=>{
-          if(audioFile!==null){
-              //uploading audio to storage
-              const storageRef=ref(projectStorage,`userAudio1`);
-              const uploadTask = uploadBytesResumable(storageRef, audioFile);
-              uploadTask.on('state_changed',
-               async()=>{
-                  try {
-                       await getDownloadURL(storageRef).then((url)=>{
-                        console.log(url);
-                        setUploadedFile(url);
-                       })
-                       //patch user image to db
-                       const url=`http:localhost:5000/api/upload`
-                         await fetch(url,{
-                             method:'PATCH',
-                             body:JSON.stringify({
-                               audio:uploadedFile
-                             }),
-                               headers:{
-                                 'Content-Type':'application/json'
-                               }
-                         });
-                         toast.success('Audio sent');
-                  } catch (error) {
-                    toast.error('failed ☠☠')
-                  }
-            })
-                       
-          }else{
-              toast.error("You can't send an empty file!")
-          }
-        }
     return (
         <>
             <div className='home start'>

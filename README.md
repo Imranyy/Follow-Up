@@ -35,3 +35,7 @@ cd server
 npm install
 node index
 ```
+# Developers
+Developed by [Imrany](https://github.com/imranyy).
+
+A javascript fullstack developer.
