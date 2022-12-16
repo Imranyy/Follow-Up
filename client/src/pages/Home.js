@@ -1,16 +1,13 @@
 import React,{useState} from 'react';
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
+import { projectStorage,ref,getDownloadURL,uploadBytesResumable} from '../fireBaseConfig/fireConfig';
 
 function Home(props) {
     let device=navigator.mediaDevices.getUserMedia({audio:true,video:false}); //access the user audio device
     const [recordBtn,setRecordBtn]=useState('');
-    const [audioTitle,setAudioTitle]=useState('');
     const [audioFile,setAudioFile]=useState('');
-    const [uploadedFile,setUploadedFile]=useState([]);
-    const [results,setResults]=useState(
-        <input type='text' onChange={e=>setAudioTitle(e.target.value)} placeholder='Audio Title' onKeyDown={showRecordBtn} required/>
-    );
+    const [uploadedFile,setUploadedFile]=useState('');
+    const [results,setResults]=useState('');
 
     //audio recording
    function  startRecording(){
@@ -39,11 +36,6 @@ function Home(props) {
             }
         }
         recorder.start();
-        // setTimeout(()=>{
-        //     recorder.stop();
-        //     setRecordBtn(<button>Submit</button>)
-        // },5000);
-        
          setRecordBtn(
             <button onClick={stop} type='button'>Stop recording...</button>
         )
@@ -56,27 +48,22 @@ function Home(props) {
     
    }
    
-
-    function showRecordBtn(){
-        setRecordBtn(
-            <button onClick={startRecording} type='button'>Start Recording</button>
-        );
-    }
-
     //submitting audio to api
     async function submitAudio(e){
         e.preventDefault();
         try {
             const url='http://localhost:5000/api/upload';
             const formData={
-                title:audioTitle,
                 audio:audioFile.slice(5)
                 // audio:audioFile
             }
-           const response= await axios.post(url,formData,{
+           const response= await fetch(url,{
+            method:'POST',
+            body:JSON.stringify({
+                audio:audioFile
+            }),
             headers:{
-            //    'content-type':'application/json',
-               'content-type':'multipart/form-data'
+                'content-type':'application/json'
             }
            })
         const parseRes=await response.data;
@@ -90,14 +77,50 @@ function Home(props) {
         }
     }
     function showForm(){
-       document.querySelector('.home form input').style.display='block';
+        startRecording();
        document.querySelector('.home .add-btn').style.display='none';
     }
+    
+  //upload audio 
+        const changeHandler=(e)=>{
+          if(audioFile!==null){
+              //uploading audio to storage
+              const storageRef=ref(projectStorage,`userAudio1`);
+              const uploadTask = uploadBytesResumable(storageRef, audioFile);
+              uploadTask.on('state_changed',
+               async()=>{
+                  try {
+                       await getDownloadURL(storageRef).then((url)=>{
+                        console.log(url);
+                        setUploadedFile(url);
+                       })
+                       //patch user image to db
+                       const url=`http:localhost:5000/api/upload`
+                         await fetch(url,{
+                             method:'PATCH',
+                             body:JSON.stringify({
+                               audio:uploadedFile
+                             }),
+                               headers:{
+                                 'Content-Type':'application/json'
+                               }
+                         });
+                         toast.success('Audio sent');
+                  } catch (error) {
+                    toast.error('failed ☠☠')
+                  }
+            })
+                       
+          }else{
+              toast.error("You can't send an empty file!")
+          }
+        }
     return (
         <>
             <div className='home start'>
                 {/* {audioFile} */}
                 <div className='grid-podcast'>
+                    <i class="fa-solid fa-browser"></i>
                     <div className='grid-item'>
                         {/* {uploadedFile&&uploadedFile.map(audio=>( */}
                             <div className='card'>
