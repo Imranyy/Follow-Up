@@ -35,6 +35,7 @@ function Home(props) {
                 audio.appendChild(mainAudio);
                 mainAudio.innerHTML=`<source src=${URL.createObjectURL(blob)} type="audio/webm"/>`
                 setAudioFile(URL.createObjectURL(blob))
+                // setAudioFile(blob)
             }
         }
         recorder.start();
@@ -70,6 +71,7 @@ function Home(props) {
             const formData={
                 title:audioTitle,
                 audio:audioFile.slice(5)
+                // audio:audioFile
             }
            const response= await axios.post(url,formData,{
             headers:{
@@ -94,6 +96,7 @@ function Home(props) {
     return (
         <>
             <div className='home start'>
+                {/* {audioFile} */}
                 <div className='grid-podcast'>
                     <div className='grid-item'>
                         {/* {uploadedFile&&uploadedFile.map(audio=>( */}
