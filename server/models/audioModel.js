@@ -1,13 +1,13 @@
 const mongoose=require('mongoose');
 const audioSchema=mongoose.Schema({
+    userID:{
+        type:String,
+        require:true
+    },
     pic:{
         type:String
     },
     username:{
-        type:String,
-        require:true
-    },
-    email:{
         type:String,
         require:true
     },
