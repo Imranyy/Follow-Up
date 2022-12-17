@@ -1,36 +1,99 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
-function Navbar(props) {
+function Navbar() {
+    const [isUserUi,setIsUserUi]=useState();
+    const [isAdminUi,setIsAdminUi]=useState();
+    const loggedinLink=document.querySelectorAll('.logged-in');
+    const loggedoutLink=document.querySelectorAll('.logged-out');
+    //check ui
+      const checkUi=async()=>{
+        if(sessionStorage.getItem('adminToken')){
+          try {
+            const url='http://localhost:5000/api/admins/verify';
+            const response=await fetch(url,{
+              method:"GET",
+              headers:{
+              "authorization":`Bearer ${sessionStorage.getItem('adminToken')}`
+              }
+            })
+            const parseRes=await response.json();
+            parseRes===true?setIsAdminUi(true):setIsAdminUi(false)
+          } catch (error) {
+            toast.error(error.message)
+          }
+        } else{
+            try {
+                const url='http://localhost:5000/api/verify';
+                const response=await fetch(url,{
+                  method:"GET",
+                  headers:{
+                  "authorization":`Bearer ${sessionStorage.getItem('userToken')}`
+                  }
+                })
+                const parseRes=await response.json();
+                  parseRes===true?setIsUserUi(true):setIsUserUi(false)
+              } catch (error) {
+                toast.error(error.message)
+              }
+        }
+      }
+      useEffect(()=>{
+        checkUi();
+      },[])
+      
+     if(isUserUi===false){
+      loggedinLink.forEach(item=>item.style.display='none')
+      loggedoutLink.forEach(item=>item.style.display='block')
+    }else if(isUserUi===true){
+      loggedinLink.forEach(item=>item.style.display='block')
+      loggedoutLink.forEach(item=>item.style.display='none')
+    }
+    console.log(isUserUi)
     //👌🎨📣🎧
     const showMenu=()=>{
-        document.querySelector('.menu-list').style.display='block';
+        document.querySelector('.menu-list-bg').style.display='block';
     }
     const closeMenu=()=>{
-        document.querySelector('.menu-list').style.display='none';
+        document.querySelector('.menu-list-bg').style.display='none';
+    }
+    const logOut=()=>{
+        toast.success('You have signed out')
+        localStorage.removeItem('username');
+        localStorage.removeItem('pic');
+        localStorage.removeItem('email');
+        localStorage.removeItem('userID');
+        sessionStorage.removeItem('userToken');
+        sessionStorage.removeItem('adminToken');
+        closeMenu();
+        setIsUserUi(false)
     }
     return (
         <>
             <nav>
                 <div className='nav-bar'>
-                    <div className='brand-name'><Link to='/'>Podcast.🐌</Link></div>
+                    <div className='brand-name'><Link to='/'>Vocal Tweet🐌</Link></div>
                     <ul className='nav-item'>
+                        <li className='logged-in' style={{display:'none'}}><Link to='/'>{localStorage.getItem('username')}</Link></li>
                         <li><Link to='/'>Home</Link></li>
-                        <li><Link to='/login'>Sign In</Link></li>
-                        <li><Link to='/register'>Sign Up</Link></li>
+                        <li className='logged-out' style={{display:'none'}}><Link to='/login'>Sign In</Link></li>
+                        <li className='logged-in' style={{display:'none'}}><button onClick={logOut} className='sign-out-btn'>Sign Out</button></li>
                         <li><button onClick={showMenu} className='menu-btn'>Menu</button></li>
                     </ul>
                 
                 </div>
             </nav>
-            <div className='menu-list'>
-                <button onClick={closeMenu}>Close</button>
-                <ul>
-                    <li><Link to='/' onClick={closeMenu}>Home</Link></li>
-                    <li><Link to='/login' onClick={closeMenu}>Sign In</Link></li>
-                    <li><Link to='/register' onClick={closeMenu}>Sign Up</Link></li>
-                </ul>
-
+            <div className='menu-list-bg' onClick={closeMenu}>
+                <div className='menu-list'>
+                    <button onClick={closeMenu}>Close</button>
+                    <ul>
+                        <li className='logged-in' style={{display:'none'}}><Link to='/' onClick={closeMenu}>{localStorage.getItem('username')}</Link></li>
+                        <li><Link to='/' onClick={closeMenu}>Home</Link></li>
+                        <li className='logged-out' style={{display:'none'}}><Link to='/login' onClick={closeMenu}>Sign In</Link></li>
+                        <li className='logged-in' style={{display:'none'}}><a href='#' onClick={logOut}>Sign Out</a></li>
+                    </ul>
+                </div>
             </div>
         </>
     );

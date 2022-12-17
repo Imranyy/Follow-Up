@@ -1,6 +1,17 @@
-
+@media screen and (max-width:500px){
+  nav .menu-btn{
+    display: block;
+  }
+  nav .sign-out-btn,nav .nav-item li a{
+    display:none;
+  }
+}
 @supports(backdrop-filter: blur(2rem)){
     .menu-list{
+      background:  rgb(224, 217, 204);
+      backdrop-filter: blur(3rem);
+    }
+    .sign-in form{
       background:  rgb(224, 217, 204);
       backdrop-filter: blur(3rem);
     }

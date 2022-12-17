@@ -1,14 +1,15 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { toast } from 'react-hot-toast';
 import { projectStorage,ref,getDownloadURL,uploadBytesResumable} from '../fireBaseConfig/fireConfig';
 
-function Home(props) {
+function Home({userUi}) {
     let device=navigator.mediaDevices.getUserMedia({audio:true,video:false}); //access the user audio device
     const [recordBtn,setRecordBtn]=useState('');
     const [audioFile,setAudioFile]=useState('');
     const [uploadedFile,setUploadedFile]=useState([]);
     const [uploadedAudioURL,setUploadedAudioURL]=useState('');
     const [results,setResults]=useState('');
+    const [data,setData]=useState('')
 
     //audio recording
    function  startRecording(){
@@ -63,12 +64,15 @@ function Home(props) {
                     //submitting audio data to API
                      const url=`http:localhost:5000/api/upload`
                        const response=await fetch(url,{
-                           method:'PATCH',
+                           method:'POST',
                            body:JSON.stringify({
-                             audio:uploadedAudioURL
+                            pic:localStorage.getItem('pic'),
+                            userID:localStorage.getItem('userID'),
+                            email:localStorage.getItem('email'),
+                            audio:uploadedAudioURL
                            }),
                              headers:{
-                               'Content-Type':'application/json'
+                               'authorization':`Bearer ${sessionStorage.getItem('userToken')}`
                              }
                        });
                        const parseRes=await response.data;
@@ -86,22 +90,39 @@ function Home(props) {
         startRecording();
        document.querySelector('.home .add-btn').style.display='none';
     }
+    //get all data
+    const getData=async()=>{
+        try{
+                    
+            const url='http://localhost:5000/api/data';
+            const response=await fetch(url,{
+                method:"GET"
+            })
+            const parseRes=await response.json();
+            console.log(parseRes);
+            setData(parseRes)
+        }catch(err){
+            toast.error(err.message)
+        }
+    } 
     
+    useEffect(()=>{
+        getData()
+    },[])
     return (
         <>
             <div className='home start'>
-                {/* {audioFile} */}
                 <div className='grid-podcast'>
                     <div className='grid-item'>
-                        {/* {uploadedFile&&uploadedFile.map(audio=>( */}
-                            <div className='card'>
-                                <h3>{uploadedFile.title}</h3>
-                                <p>{uploadedFile.audio}</p>
+                        {data&&data.map(audio=>(
+                            <div className='card' key={audio._id}>
+                                <h3>{audio.username}</h3>
+                                <p>{audio.pic}</p>
                                 <audio controls loop>
-                                    <source src={uploadedFile.audio} type="audio/webm"/>
+                                    <source src={audio.audioURL} type="audio/webm"/>
                                 </audio>
                             </div>
-                        {/* ))} */}
+                        ))}
                     </div>
                 </div>
 

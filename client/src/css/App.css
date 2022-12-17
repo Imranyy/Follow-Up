@@ -45,6 +45,13 @@ nav .nav-item{
 a:hover{
   border-bottom: solid 2px orange;
 }
+nav .sign-out-btn{
+  border: none;
+  font-size: large;
+  font-weight:500;
+  cursor: pointer;
+  background: none;
+}
 nav .menu-btn{
   display: none;
   border: none;
@@ -53,8 +60,18 @@ nav .menu-btn{
   cursor: pointer;
   background: none;
 }
-.menu-list{
+.menu-list-bg{
+  z-index: 1000;
+  cursor: pointer;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: none;
+}
+.menu-list{
   position: fixed;
   top: 0;
   right: 0;
@@ -62,7 +79,6 @@ nav .menu-btn{
   bottom: 0;
   background: rgb(224, 217, 204);
   padding: min(10vh,2rem) 2em;
-  z-index: 1000;
   transition: ease-out 2s;
 }
 .menu-list ul{
@@ -149,5 +165,60 @@ button:hover{
   transition: ease-out 10ms;
 }
 .home .add-btn:hover{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.9);
+}
+
+/* sign in page */
+.sign-in{
+  position: fixed;
+  z-index:-10;
+  top:80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),url('../assests/anime.png') no-repeat top;
+  background-size: cover;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0 50px 0;
+}
+
+.sign-in form{
+  display: flex;
+  flex-direction: column;
+  padding:30px 20px;
+  background:  rgb(224, 217, 204);
+  border-radius: 5px;
+  height: fit-content;
+}
+.sign-in form input{
+  font-size: medium;
+  margin-bottom: 20px;
+  width: 400px;
+  height: 30px;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+.sign-in form .link-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sign-in form .link-btn button{
+  width: 100px;
+  height: 30px;
+  font-weight: 600;
+  color:white;
+  background: orange;
+  border-radius: 5px;
+  border:none;
+  cursor: pointer;
+}
+.sign-in form .link-btn a:hover{
+  border: none;
+  color: black;
+}
+.sign-in form .link-btn button:hover{
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.9);
 }
