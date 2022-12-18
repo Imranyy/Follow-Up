@@ -122,7 +122,7 @@ button:hover{
 }
 .nav .nav-item{
   color: aliceblue;
-  padding: 10px 50px;
+  padding: 20px 50px;
   flex: 1 1;
 }
 .nav ul {
@@ -135,6 +135,28 @@ button:hover{
 .nav a{
   color: aliceblue;
   text-decoration: none;
+}
+.nav a:hover{
+  border: none;
+  color: orange;
+}
+.nav .nav-item button{
+  margin-top: -10px;
+  background: orange;
+  border: none;
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+  color:aliceblue;
+  cursor: pointer;
+  font-size: medium;
+  font-weight:600;
+  transition: 500ms ease-in-out;
+}
+.nav .nav-item button:hover{
+  background: white;
+  color: orange;
+  width: 110px;
 }
 .hero-image .content{
   color: aliceblue;
@@ -215,6 +237,7 @@ section article p{
   background: white;
   grid-template-columns: repeat(3,1fr);
   color: rgb(17, 78, 78);
+  padding: 20px 0;
 }
 .testimonials .card{
   width: 400px;
@@ -232,6 +255,101 @@ section article p{
 .testimonials .card p{
   padding: 20px 0;
 }
+.testimonials .card .card-footer{
+  display: flex;
+  justify-content: space-between;
+}
+.talk-to-us{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 50px;
+  background: rgb(245, 230, 220);
+  padding: 20px 0;
+  border-radius: 10px;
+}
+.talk-to-us .content{
+  justify-self: center;
+  align-self: center;
+  width: 300px;
+  line-height: 20px;
+}
+.talk-to-us .content p{
+  padding: 20px 0;
+  font-weight: lighter;
+  font-size: medium;
+}
+.talk-to-us form{
+  display: flex;
+  flex-direction: column;
+  background: orange;
+  padding: 20px 20px;
+  border-radius: 10px;
+  font-size: medium;
+  font-weight: 600;
+  width: fit-content;
+}
+.talk-to-us form label{
+  padding: 20px 0 0 0;
+}
+.talk-to-us form input{
+  width: 300px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.talk-to-us form textarea{
+  padding: 10px 10px;
+  height: 200px;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+}
+.talk-to-us form button{
+  margin: 20px 0 0 0;
+  cursor: pointer;
+  font-size: medium;
+  color: rgb(17, 78, 78);
+  font-weight: 600;
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  transition: ease-in-out 500ms;
+}
+.talk-to-us form button:hover{
+  width: 200px;
+  color: orange;
+  background: rgb(17, 78, 78);
+}
+footer{
+  background:rgb(17, 78, 78);
+  height: 300px;
+  color: #f2f2f2;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+footer .social-media-links, footer .quick-links{
+  justify-self: center;
+  align-self: center;
+}
+footer ul{
+  list-style: none;
+  padding: 20px 0;
+}
+footer ul li{
+  margin:10px 0;
+
+}
+footer ul li a{
+  cursor: pointer;
+  color: #f2f2f2;
+}
+footer ul li a:hover{
+  border: none;
+  color: orange;
+}
+
 /* home page css */
 .home .grid-podcast{
   display: grid;

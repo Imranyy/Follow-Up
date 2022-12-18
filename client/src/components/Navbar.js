@@ -73,7 +73,7 @@ function Navbar() {
         <>
             <nav className='nav-bar'>
                 <div className='nav-bar'>
-                    <div className='brand-name'><Link to='/home'>Vocal Tweet🐌</Link></div>
+                    <div className='brand-name'><Link to='/home'>Voice Tweet🐌</Link></div>
                     <ul className='nav-item'>
                         <li className='logged-in' style={{display:'none'}}><Link to='/'>{localStorage.getItem('username')}</Link></li>
                         <li><Link className='logged-out' style={{display:'none'}} to='/'>Home</Link></li>
