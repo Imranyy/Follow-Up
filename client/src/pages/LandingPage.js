@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import mic from '../assests/mic.png';
 import anime from '../assests/anime.png';
+import comp from '../assests/comp.png';
 import { toast } from 'react-hot-toast';
 function LandingPage(props) {
     const navigate=useNavigate();
@@ -14,7 +15,7 @@ function LandingPage(props) {
     const handleEmail=async(e)=>{
         e.preventDefault();
         try {
-            const url=`mailto:imranmat254@gmail.com`
+            const url=`mailto:imranmat254@gmail.com?subject=${name}&body=${email+message}`
             await fetch(url,{
                 method:"POST",
             })
@@ -83,7 +84,7 @@ function LandingPage(props) {
                     </p>
                 </article>
                 <article>
-                    <img src={anime}/>
+                    <img src={comp}/>
                 </article>
             </section>
 

@@ -156,11 +156,10 @@
       backdrop-filter: blur(3rem);
     }
     .sign-in form{
-      background:  rgb(224, 217, 204);
+      background:  orange;
       backdrop-filter: blur(3rem);
     }
     .talk-to-us form{
-      /* background: rgba(105, 103, 103, 0.1); */
       background: orange;
       backdrop-filter: blur(10rem);
     }

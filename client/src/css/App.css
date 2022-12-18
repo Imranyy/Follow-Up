@@ -481,8 +481,6 @@ footer ul li a:hover{
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),url('../assests/anime.png') no-repeat top;
-  background-size: cover;
   font-weight: 600;
   display: flex;
   justify-content: center;
@@ -492,18 +490,23 @@ footer ul li a:hover{
 .sign-in form{
   display: flex;
   flex-direction: column;
-  padding:30px 20px;
-  background:  rgb(224, 217, 204);
-  border-radius: 5px;
   height: fit-content;
+  background: orange;
+  color: rgb(17, 78, 78);
+  padding: 20px 20px;
+  border-radius: 10px;
+  font-size: medium;
+  font-weight: 600;
+  width: fit-content;
 }
 .sign-in form input{
   font-size: medium;
   margin-bottom: 20px;
-  width: 400px;
+  width: 300px;
   height: 30px;
-  padding-left: 10px;
+  border: none;
   border-radius: 5px;
+  padding-left: 10px;
 }
 .sign-in form .link-btn{
   display: flex;
@@ -515,15 +518,25 @@ footer ul li a:hover{
   height: 30px;
   font-weight: 600;
   color:white;
-  background: orange;
-  border-radius: 5px;
+  background: white;
+  border-radius: 50px;
   border:none;
   cursor: pointer;
+  color: rgb(17, 78, 78);
+  transition: ease-in-out 500ms;
+}
+.sign-in form .link-btn a{
+  padding:  5px 0 0 0;
+  color: #f2f2f2;
+  transition: ease-in-out 500ms;
 }
 .sign-in form .link-btn a:hover{
+  color: rgb(17, 78, 78);
   border: none;
-  color: black;
 }
 .sign-in form .link-btn button:hover{
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.9);
+  background: rgb(17, 78, 78);
+  color: orange;
+  width: 102px;
 }
