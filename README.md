@@ -1,10 +1,11 @@
 # Podcast🎙
-### Podcast is an audio streaming application, it let differents people connect and chat in audio text format, it lets user record his/her voice then sends it to other connected users. Basically, texting with voice.
+### Podcast is an audio streaming platform. it connects people and makes networking easy. In this platform, people chat through audio messages, users record they voices and sends them to other connected users. Basically, chatting via voice messages. The production site is called [Voice Tweet](https://voice-tweet-online.web.app) but the project is called Podcast.
 <br/>
 
 # Deploy🚀
 This project is host on firebase.
-View app at **[Podcast](https://podcast-online.web.app)**.
+View app at **[Voice Tweet](https://voice-tweet-online.web.app)**.
+
 And the API was deployed on Render.
 <br/>
 
@@ -14,7 +15,8 @@ Stacks used in this project are :
 | Client |  Server |  Database  |
 |------- |-------- |------------|
 |Reactjs |  Nodejs |  MongoDB   |
-|Firebase|         |            |
+|Firebase|Expressjs|            |
+
 <br/>
 
 # Run it locally💻
@@ -54,10 +56,14 @@ Worked on
 
 [*] Deploying the site 
 
-**Remember to follow me on github and other social networks links below**
+# Other Documentations 📰
+* [FrontEnd Documentation](./client/README.md)
+* [API Documentation](./server/readme.md)
+
+## Social Media Links
 
 ---
-
+* [github](https://github.com/imrany)
 * [instagram](https://instagram.com/imrany00)
 * [Twitter](https://twitter.com/imran_matano)
 * Text me on [Whatsapp](https://wa.me/+254754423664)
