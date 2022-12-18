@@ -1,5 +1,5 @@
 # Podcast🎙
-### Podcast is an audio streaming application that stream user audio input.See it as an audio sharing platform.
+### Podcast is an audio streaming application, it let differents people connect and chat in audio text format, it lets user record his/her voice then sends it to other connected users. Basically, texting with voice.
 <br/>
 
 # Deploy🚀
@@ -8,13 +8,13 @@ View app at **[Podcast](https://podcast-online.web.app)**.
 And the API was deployed on Render.
 <br/>
 
-# TechStack📚
+# TechStacks📚
 Stacks used in this project are :
 
-| Client |  Server |
-|------- |-------- |
-|Reactjs |  Nodejs |
-|Firebase|  MongoDB|
+| Client |  Server |  Database  |
+|------- |-------- |------------|
+|Reactjs |  Nodejs |  MongoDB   |
+|Firebase|         |            |
 <br/>
 
 # Run it locally💻
@@ -35,7 +35,29 @@ cd server
 npm install
 node index
 ```
-# Developers
+# Developers 😎
 Developed by [Imrany](https://github.com/imranyy).
 
-A javascript fullstack developer.
+Worked on 
+
+[*] Web design on figma
+
+[*] Reactjs
+
+[*] Firebase
+
+[*] Creating a REST API
+
+[*] Connecting to mongoDB 
+
+[*] Worked on continuous Deployment and integration with github actions.
+
+[*] Deploying the site 
+
+**Remember to follow me on github and other social networks links below**
+
+---
+
+* [instagram](https://instagram.com/imrany00)
+* [Twitter](https://twitter.com/imran_matano)
+* Text me on [Whatsapp](https://wa.me/+254754423664)
