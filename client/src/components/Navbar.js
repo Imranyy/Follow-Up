@@ -28,8 +28,8 @@ function Navbar({userUI,adminUI}) {
                 <div className='nav-bar'>
                     <div className='brand-name'><Link to='/home'>Voice Tweet🐌</Link></div>
                     <ul className='nav-item'>
-                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('userID')}`}>{localStorage.getItem('username')}</Link></li>
                         <li><Link to='/home'>Home</Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('userID')}`}>{localStorage.getItem('username')}</Link></li>
                         <li className='logged-out' style={{display:'none'}}><Link to='/login'>Sign In</Link></li>
                         <li><button onClick={showMenu} className='menu-btn'>Menu</button></li>
                     </ul>
@@ -40,8 +40,8 @@ function Navbar({userUI,adminUI}) {
                 <div className='menu-list'>
                     <button onClick={closeMenu}>Close</button>
                     <ul>
-                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('userID')}`} onClick={closeMenu}>{localStorage.getItem('username')}</Link></li>
                         <li><Link to='/home' onClick={closeMenu}>Home</Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('userID')}`} onClick={closeMenu}>{localStorage.getItem('username')}</Link></li>
                         <li className='logged-out' style={{display:'none'}}><Link to='/login' onClick={closeMenu}>Sign In</Link></li>
                     </ul>
                 </div>

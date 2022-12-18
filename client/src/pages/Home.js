@@ -127,15 +127,29 @@ const preloaderOff=()=>{
             <div className='home start'>
                 <div className='grid-podcast'>
                     <div className='grid-item'>
-                        {data&&data.map(audio=>(
-                            <div className='card' key={audio._id}>
-                                <h3>{audio.username}</h3>
-                                <p>{audio.pic}</p>
-                                <audio controls loop>
-                                    <source src={audio.audioURL} type="audio/webm"/>
-                                </audio>
-                            </div>
-                        ))}
+                        {data&&data.map(audio=>{
+                            if(audio.username===localStorage.getItem('username')){
+                                return(
+                                    <div style={{float:'right'}} className='card' >
+                                        <h3>{audio.username}</h3>
+                                        <p>{audio.pic}</p>
+                                        <audio controls loop>
+                                            <source src={audio.audioURL} type="audio/webm"/>
+                                        </audio>
+                                    </div>
+                                )
+                            }else{
+                                return(
+                                    <div style={{float:'left'}} className='card' >
+                                        <h3>{audio.username}</h3>
+                                        <p>{audio.pic}</p>
+                                        <audio controls loop>
+                                            <source src={audio.audioURL} type="audio/webm"/>
+                                        </audio>
+                                    </div>
+                                )
+                            }
+                        })}
                     </div>
                 </div>
 

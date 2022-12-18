@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 function Detail({userUI, adminUI}) {
@@ -65,6 +65,7 @@ const preloaderOff=()=>{
                 <h1>Pic {userData.pic}</h1>
                 <h2>{userData.username}</h2>
                 <h3>{userData.email}</h3>
+                <Link to='/'>Add a testimonial</Link>
                 <button className='sign-out-btn' onClick={logOut} >Sign Out</button>
             </div>
             </div>

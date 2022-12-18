@@ -31,6 +31,7 @@ a{
   top: 0;
   height: 80px;
   box-shadow:0 2px 4px 0 rgba(0,0,0,.2);
+  z-index: 100;
 }
 .nav-bar .brand-name a{
   position: fixed;
@@ -281,7 +282,6 @@ section{
   display: grid;
   grid-template-columns: repeat(2,1fr);
   background: white;
-  /* width: fit-content; */
   margin: 0 auto;
 }
 section img{
@@ -428,12 +428,13 @@ footer ul li a:hover{
 
 /* home page css */
 .home .grid-podcast{
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  column-gap: 50px;
-  row-gap: 50px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
 }
-
+/* .home .grid-podcast :nth-child(2){
+  float: right;
+} */
 .home form{
   display: flex;
   position: fixed;  
