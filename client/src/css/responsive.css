@@ -1,3 +1,95 @@
+
+@media screen and (max-width:900px){
+  .testimonials{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    
+  }
+}
+@media screen and (max-width:750px){
+  .content h1{
+    font-size: 35px;
+  }
+  .content p{
+    font-size: 20px;
+  }
+  .enjoy-connection{
+    grid-template-columns: 30vw auto;
+    height: 300px;
+  }
+  .enjoy-connection img{
+    width: 40vw;
+    height: 300px;
+  }
+  .enjoy-connection article{
+    font-size: 12px;
+  }
+  
+  .share-voice{
+    grid-template-columns:53vw 10vw ;
+  }
+  .share-voice img{
+    width: 40vw;
+    height: 300px;
+  }
+  .share-voice article{
+    font-size: 12px;
+    justify-self: flex-start;
+    padding-left: 20px;
+  }
+  
+  .talk-to-us{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 50px;
+  }
+  .talk-to-us form{
+    justify-self: center;
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width:600px){
+  
+  .content h1{
+    font-size: 30px;
+  }
+  .content p{
+    font-size: 18px;
+    line-height: normal;
+  }
+  
+}
+
+@media screen and (max-width:550px){
+  .nav ul .menu{
+    display: block;
+  }
+  .enjoy-connection{
+    display: flex;
+    padding: 50px 0;
+    justify-content: center;
+    height: fit-content;
+  }
+  .enjoy-connection img{
+    display: none;
+  }
+  .enjoy-connection article{
+    font-size: 15px;
+  }
+  
+  .share-voice{
+    display: flex;
+    justify-content: center;
+  }
+  .share-voice img{
+    display: none;
+  }
+  .share-voice article{
+    font-size: 15px;
+  }
+}
+
 @media screen and (max-width:500px){
   .nav-bar .menu-btn{
     display: block;
@@ -5,7 +97,59 @@
   .nav-bar .sign-out-btn,nav .nav-item li a{
     display:none;
   }
+  .nav .nav-item{
+    display: none;
+  }
 }
+
+@media screen and (max-width:430px){
+  section article{
+    padding: 0 5px;
+  }
+  section article p{
+    font-size: 12px;
+    width: fit-content;
+  }
+  .content h1{
+    font-size: 25px;
+  }
+  .content p{
+    font-size: 15px;
+  }
+  .testimonials .card{
+    width: 80vw;
+  }
+  .talk-to-us{
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+  }
+  .talk-to-us .content{
+    padding-left: 50px;
+  }
+  .talk-to-us .content p{
+    width: 150px;
+  }
+  .talk-to-us form{
+    padding: 10px;
+  }
+  
+  .talk-to-us form input,.talk-to-us form textarea{
+    width: 80vw;
+  }
+  footer{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    font-size: 15px;
+    padding: 50px 0 0 0;
+  }
+  footer .quick-links{
+    margin-left: -80px;
+  }
+}
+
 @supports(backdrop-filter: blur(2rem)){
     .menu-list{
       background:  rgb(224, 217, 204);

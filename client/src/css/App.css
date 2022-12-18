@@ -116,6 +116,7 @@ button:hover{
   height: fit-content;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),url('../assests/anime.png') no-repeat top;
   background-size: cover;
+  width: 100%;
 }
 .nav{
   display: flex;
@@ -157,6 +158,69 @@ button:hover{
   background: white;
   color: orange;
   width: 110px;
+}
+.nav ul .menu{
+  background: none;
+  border: none;
+  font-size: larger;
+  font-weight: 600;
+  color: orange;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+}
+.nav ul .menu:hover{
+  color: rgb(17, 78, 78);
+}
+.menu-bg{
+  z-index: 1000;
+  cursor: pointer;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
+}
+.menu-bg .menu-list{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 30%;
+  bottom: 0;
+  background: rgb(224, 217, 204);
+  padding: min(10vh,2rem) 2em;
+  transition: ease-out 2s;
+}
+.menu-bg .menu-list ul{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  font-size: large;
+  font-weight:500;
+  line-height: 40px;
+  margin-top: 50px;
+}
+.menu-bg .menu-list ul li a{
+  font-weight: 700;
+  color: orange;
+}
+.menu-bg .menu-list ul li a:hover{
+  color: rgb(17, 78, 78);
+}
+
+.menu-bg .menu-list button{
+  color: orange;
+  cursor: pointer;
+  font-size: large;
+  font-weight:700;
+  border: none;
+  background: none;
+  position: fixed;
+  right: 50px;
 }
 .hero-image .content{
   color: aliceblue;
@@ -235,9 +299,10 @@ section article p{
 .testimonials{
   display: grid;
   background: white;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
   color: rgb(17, 78, 78);
   padding: 20px 0;
+  row-gap: 50px;
 }
 .testimonials .card{
   width: 400px;

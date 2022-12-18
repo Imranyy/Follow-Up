@@ -9,6 +9,7 @@ import Detail from './pages/Detail';
 import NotFound from './pages/NotFound';
 import { toast, Toaster } from 'react-hot-toast';
 import { useEffect,useState } from 'react';
+import Guide from './pages/Guide';
 
 function App() {
   const [userAuth,setUserAuth]=useState(false);
@@ -65,6 +66,7 @@ function App() {
       <Route path='/home' element={<Home/>}/>
       <Route path='/login' element={<SignIn/>}/>
       <Route path='/register' element={<SignUp/>}/>
+      <Route path='/guide' element={<Guide/>}/>
       <Route path='/audio/:id' element={<Detail/>}/>
       <Route path='*' element={<NotFound/>}/>
     </Routes> 

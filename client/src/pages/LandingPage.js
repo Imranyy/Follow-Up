@@ -14,20 +14,43 @@ function LandingPage(props) {
     const handleEmail=async(e)=>{
         e.preventDefault();
         try {
-            
+            const url=`mailto:imranmat254@gmail.com`
+            await fetch(url,{
+                method:"POST",
+            })
         } catch (error) {
             toast.error('Message not sent!')
         }
+    }
+    const showMenu=()=>{
+        document.querySelector('.menu-bg').style.display='block';
+    }
+    const closeMenu=()=>{
+        document.querySelector('.menu-bg').style.display='none';
     }
     return (
         <div className='land-page'>
             <div className='hero-image'>
                 <nav className='nav'>
                     <div className='nav-item logo'><h1>Voice Tweet🐌</h1></div>
-                    <ul className='nav-item' role='navigation'>
-                        <Link to='/login'>Login</Link>
-                        <button onClick={signUp}>Sign Up</button>
+                    <ul role='navigation'>
+                        <div className='nav-item'>
+                            <Link to='/login'>Login</Link>
+                            <button onClick={signUp}>Sign Up</button>
+                        </div>
+                        <button className='menu' onClick={showMenu}>Menu</button>
                     </ul>
+                    <div className='menu-bg' onClick={closeMenu}>
+                        <div className='menu-list'>
+                            <button onClick={closeMenu}>Close</button>
+                            <ul>
+                                <li><Link to='/login' onClick={closeMenu}>Login</Link></li>
+                                <li><Link to='/register' onClick={closeMenu}>Sign Up</Link></li>
+                                <li><Link to='/guide' onClick={closeMenu}>Guide lines</Link></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </nav>
 
                 <div className='content'>
@@ -66,6 +89,17 @@ function LandingPage(props) {
 
             <h1 className='testimonials-header'>testimonials</h1>
             <div className='testimonials'>
+                <div className='card'>
+                    <img src={mic} alt='..'/>
+                    <p>
+                        Hello, I have been using this platform for about six months now. I would say it's a good
+                        platform in cases where you would like to chat with new people.
+                        But it's good😍.
+                    </p>
+                    <div className='card-footer'>
+                        <h3>Lilian</h3> <Link to='/'>Visit my profile</Link>
+                    </div>
+                </div>
                 <div className='card'>
                     <img src={mic} alt='..'/>
                     <p>
