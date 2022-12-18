@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-function SignIn(props) {
+function SignIn({userUI,adminUI}) {
     const navigate=useNavigate()
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
@@ -39,12 +39,12 @@ function SignIn(props) {
             }
         } catch (error) {
             console.log(error.message);
-            toast.error(error.message);
+            toast.error('Network Error!');
         }
     }
     return (
         <>
-        <Navbar/>
+        <Navbar userUI={userUI} adminUI={adminUI}/>
             <div className='sign-in start'>
                 <form onSubmit={handleLogin}>
                     <label>Email</label>

@@ -12,28 +12,11 @@ import { useEffect,useState } from 'react';
 import Guide from './pages/Guide';
 
 function App() {
-  const [userAuth,setUserAuth]=useState(false);
+  const [isUserAuth,setIsUserAuth]=useState('');
+  const [isAdminAuth,setIsAdminAuth]=useState('');
 
-  const verifyUser=async()=>{
-    try {
-      const url='http://localhost:5000/api/verify';
-      const response=await fetch(url,{
-        method:"GET",
-        headers:{
-        "authorization":`Bearer ${sessionStorage.getItem('userToken')}`
-        }
-      })
-      const parseRes=await response.json();
-      if(parseRes.error){
-        toast.error(parseRes.error)
-      }else{
-        parseRes===true?setUserAuth(true):setUserAuth(false);
-      }
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
-  const verifyAdmin=async()=>{
+  //check ui
+  const checkUi=async()=>{
     if(sessionStorage.getItem('adminToken')){
       try {
         const url='http://localhost:5000/api/admins/verify';
@@ -44,31 +27,40 @@ function App() {
           }
         })
         const parseRes=await response.json();
-        if(parseRes.error){
-          toast.error(parseRes.error)
-        }else{
-          console.log(parseRes);
-        }
+        parseRes===true?setIsAdminAuth(true):setIsAdminAuth(false)
       } catch (error) {
-        toast.error(error.message)
+        toast.error('Network Error!')
       }
+    } else{
+        try {
+            const url='http://localhost:5000/api/verify';
+            const response=await fetch(url,{
+              method:"GET",
+              headers:{
+              "authorization":`Bearer ${sessionStorage.getItem('userToken')}`
+              }
+            })
+            const parseRes=await response.json();
+              parseRes===true?setIsUserAuth(true):setIsUserAuth(false)
+          } catch (error) {
+            toast.error('Network Error!')
+          }
     }
   }
   useEffect(()=>{
-    verifyAdmin();
-    verifyUser();
+    checkUi();
   })
   return (
   <Router>
     <Toaster/>
     <Routes>
       <Route path='/' element={<LandingPage/>}/>
-      <Route path='/home' element={<Home/>}/>
-      <Route path='/login' element={<SignIn/>}/>
-      <Route path='/register' element={<SignUp/>}/>
-      <Route path='/guide' element={<Guide/>}/>
-      <Route path='/audio/:id' element={<Detail/>}/>
-      <Route path='*' element={<NotFound/>}/>
+      <Route path='/home' element={<Home userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
+      <Route path='/login' element={<SignIn userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
+      <Route path='/register' element={<SignUp userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
+      <Route path='/guide' element={<Guide userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
+      <Route path='/user/:id' element={<Detail userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
+      <Route path='*' element={<NotFound userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
     </Routes> 
   </Router>
   );

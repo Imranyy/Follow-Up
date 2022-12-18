@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import Navbar from '../components/Navbar';
 import { projectStorage,ref,getDownloadURL,uploadBytesResumable} from '../fireBaseConfig/fireConfig';
 
-function Home({userUi}) {
+function Home({userUI, adminUI}) {
     let device=navigator.mediaDevices.getUserMedia({audio:true,video:false}); //access the user audio device
     const [recordBtn,setRecordBtn]=useState('');
     const [audioFile,setAudioFile]=useState('');
@@ -82,7 +82,7 @@ function Home({userUi}) {
                        setUploadedFile(parseRes.results);
                 } catch (error) {
                     console.log(error.message)
-                  toast.error("Try again!")
+                  toast.error("Network Error!")
                 }
           })
     }
@@ -100,10 +100,9 @@ function Home({userUi}) {
                 method:"GET"
             })
             const parseRes=await response.json();
-            console.log(parseRes);
             setData(parseRes)
         }catch(err){
-            toast.error(err.message)
+            toast.error('Network Error!')
         }
     } 
     
@@ -112,7 +111,7 @@ function Home({userUi}) {
     },[])
     return (
         <>
-        <Navbar/>
+        <Navbar userUI={userUI} adminUI={adminUI}/>
             <div className='home start'>
                 <div className='grid-podcast'>
                     <div className='grid-item'>

@@ -56,7 +56,7 @@ function LandingPage(props) {
 
                 <div className='content'>
                     <h1><span>Connect</span> <span>with</span> <span className='orange'>different</span> <span>people</span></h1>
-                    <p>Essentially, This platform connects people and enable them to chat via voice text..!</p>
+                    <p>Essentially, This platform connects people and enable them to chat via voice messages</p>
                     <button onClick={signUp}>Get Started</button>
                 </div>
             </div>

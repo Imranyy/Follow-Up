@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-function SignUp(props) {
+function SignUp({userUI,adminUI}) {
     const navigate=useNavigate();
     const [username,setUsername]=useState('');
     const [email,setEmail]=useState('');
@@ -53,12 +53,12 @@ function SignUp(props) {
             toast.error("Password doesn't match ☠!")
            }
       } catch (error) {
-        toast.error(error.message)
+        toast.error("Network Error!")
       }
     }
     return (
         <>
-        <Navbar/>
+        <Navbar userUI={userUI} adminUI={adminUI}/>
             <div className='sign-in '>
                 <form onSubmit={handleRegister}>
                     <label>Username</label>
