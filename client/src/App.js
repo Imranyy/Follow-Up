@@ -1,8 +1,7 @@
 import './css/App.css';
 import './css/responsive.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-// import LandingPage from './pages/LandingPage';
+import LandingPage from './pages/LandingPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
@@ -61,14 +60,13 @@ function App() {
   return (
   <Router>
     <Toaster/>
-    <Navbar userUi={userAuth}/>
     <Routes>
-      <Route path='/' element={<Home userUi={userAuth}/>}/>
+      <Route path='/' element={<LandingPage/>}/>
+      <Route path='/home' element={<Home/>}/>
       <Route path='/login' element={<SignIn/>}/>
       <Route path='/register' element={<SignUp/>}/>
       <Route path='/audio/:id' element={<Detail/>}/>
       <Route path='*' element={<NotFound/>}/>
-      {/* <Route path='/' element={<LandingPage/>}/> */}
     </Routes> 
   </Router>
   );

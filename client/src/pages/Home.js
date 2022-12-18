@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { toast } from 'react-hot-toast';
+import Navbar from '../components/Navbar';
 import { projectStorage,ref,getDownloadURL,uploadBytesResumable} from '../fireBaseConfig/fireConfig';
 
 function Home({userUi}) {
@@ -111,6 +112,7 @@ function Home({userUi}) {
     },[])
     return (
         <>
+        <Navbar/>
             <div className='home start'>
                 <div className='grid-podcast'>
                     <div className='grid-item'>

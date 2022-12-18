@@ -1,10 +1,13 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 function Detail(props) {
     return (
-        <div>
+        <>
+            <Navbar/>
+            <h1>Detailed page</h1>
             
-        </div>
+        </>
     );
 }
 

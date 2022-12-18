@@ -71,12 +71,13 @@ function Navbar() {
     }
     return (
         <>
-            <nav>
+            <nav className='nav-bar'>
                 <div className='nav-bar'>
-                    <div className='brand-name'><Link to='/'>Vocal Tweet🐌</Link></div>
+                    <div className='brand-name'><Link to='/home'>Vocal Tweet🐌</Link></div>
                     <ul className='nav-item'>
                         <li className='logged-in' style={{display:'none'}}><Link to='/'>{localStorage.getItem('username')}</Link></li>
-                        <li><Link to='/'>Home</Link></li>
+                        <li><Link className='logged-out' style={{display:'none'}} to='/'>Home</Link></li>
+                        <li><Link to='/home'>Home</Link></li>
                         <li className='logged-out' style={{display:'none'}}><Link to='/login'>Sign In</Link></li>
                         <li className='logged-in' style={{display:'none'}}><button onClick={logOut} className='sign-out-btn'>Sign Out</button></li>
                         <li><button onClick={showMenu} className='menu-btn'>Menu</button></li>
@@ -89,7 +90,8 @@ function Navbar() {
                     <button onClick={closeMenu}>Close</button>
                     <ul>
                         <li className='logged-in' style={{display:'none'}}><Link to='/' onClick={closeMenu}>{localStorage.getItem('username')}</Link></li>
-                        <li><Link to='/' onClick={closeMenu}>Home</Link></li>
+                        <li><Link className='logged-out' style={{display:'none'}} to='/'>Home</Link></li>
+                        <li><Link to='/home' onClick={closeMenu}>Home</Link></li>
                         <li className='logged-out' style={{display:'none'}}><Link to='/login' onClick={closeMenu}>Sign In</Link></li>
                         <li className='logged-in' style={{display:'none'}}><a href='#' onClick={logOut}>Sign Out</a></li>
                     </ul>

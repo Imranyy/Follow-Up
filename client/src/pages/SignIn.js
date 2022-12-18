@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 function SignIn(props) {
     const navigate=useNavigate()
@@ -43,6 +44,7 @@ function SignIn(props) {
     }
     return (
         <>
+        <Navbar/>
             <div className='sign-in start'>
                 <form onSubmit={handleLogin}>
                     <label>Email</label>

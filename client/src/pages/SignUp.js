@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 function SignUp(props) {
     const navigate=useNavigate();
@@ -57,6 +58,7 @@ function SignUp(props) {
     }
     return (
         <>
+        <Navbar/>
             <div className='sign-in '>
                 <form onSubmit={handleRegister}>
                     <label>Username</label>

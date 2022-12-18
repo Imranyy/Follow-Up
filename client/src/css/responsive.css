@@ -1,8 +1,8 @@
 @media screen and (max-width:500px){
-  nav .menu-btn{
+  .nav-bar .menu-btn{
     display: block;
   }
-  nav .sign-out-btn,nav .nav-item li a{
+  .nav-bar .sign-out-btn,nav .nav-item li a{
     display:none;
   }
 }
