@@ -108,9 +108,12 @@ button:hover{
 }
 
 /* landing page  css */
+.land-page{
+  background: white;
+  color:  rgb(17, 78, 78);
+}
 .hero-image{
   height: fit-content;
-  /* background: rgb(43, 183, 226); */
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),url('../assests/anime.png') no-repeat top;
   background-size: cover;
 }
@@ -142,9 +145,18 @@ button:hover{
 .content h1{
   font-weight: 700;
   font-size: 50px;
+  cursor: pointer;
+  transition:500ms;
+  text-transform:uppercase;
 }
-.content h1 span{
+.content h1 span:hover{
   color: orange;
+}
+.content h1 .orange{
+  color: orange;
+}
+.content h1 .orange:hover{
+  color: aliceblue;
 }
 .content p{
   font-size: large;
@@ -159,28 +171,75 @@ button:hover{
   color: white;
   font-size: large;
   font-weight: 700;
+  transition:500ms;
   border-radius: 40px;
 }
 .content button:hover{
   color: orange;
   background: white;
+  height: 52px;
+  width: 220px;
 }
-
+section{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  background: white;
+  /* width: fit-content; */
+  margin: 0 auto;
+}
+section img{
+  width: 49vw;
+  height: 380px;
+}
+section article{
+  justify-self: center;
+  align-self: center;
+  color: rgb(17, 78, 78);
+  font-weight: 600;
+  font-size: large;
+  line-height: 25px;
+}
+section article p{
+  padding: 20px 0;
+  font-weight: lighter;
+  font-size: medium;
+  width: 300px;
+}
+.testimonials-header{
+  text-transform: uppercase;
+  text-align: center;
+  padding: 30px 0;
+}
+.testimonials{
+  display: grid;
+  background: white;
+  grid-template-columns: repeat(3,1fr);
+  color: rgb(17, 78, 78);
+}
+.testimonials .card{
+  width: 400px;
+  padding: 20px 20px;
+  border-radius: 10px;
+  justify-self: center;
+  background: #f2f2f2;
+  cursor: pointer;
+}
+.testimonials .card img{
+  width: 65px;
+  height: 65px;
+  border-radius: 50px;
+}
+.testimonials .card p{
+  padding: 20px 0;
+}
+/* home page css */
 .home .grid-podcast{
   display: grid;
   grid-template-columns: repeat(4,1fr);
   column-gap: 50px;
   row-gap: 50px;
 }
-.card{
-  border: solid 1px grey;
-  border-radius: 5px;
-  cursor: pointer;
-  border-left: solid 30px steelblue;
-}
-.card:hover{
 
-}
 .home form{
   display: flex;
   position: fixed;  
