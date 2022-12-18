@@ -10,6 +10,7 @@ function Detail({userUI, adminUI}) {
 
     const getUserDetails=async()=>{
         try {
+            preloader();
             const url=`http://localhost:5000/api/users/${id}`;
             const response=await fetch(url,{
                 method:"POST",
@@ -17,6 +18,7 @@ function Detail({userUI, adminUI}) {
                     "authorization":`Bearer ${sessionStorage.getItem('userToken')}`
                 }
             })
+            preloaderOff();
             const parseRes=await response.json();
             if(parseRes.error){
                 toast.error(parseRes.error);
@@ -25,6 +27,7 @@ function Detail({userUI, adminUI}) {
                 setUserData(parseRes);
             }
         } catch (error) {
+            preloader();
             toast.error(error.message);
             navigate('/home');
         }
@@ -32,6 +35,16 @@ function Detail({userUI, adminUI}) {
     useEffect(()=>{
         getUserDetails();
     },[]);
+
+    //preloader
+  const preloader=()=>{
+    const loader=document.querySelector('.preload');
+    loader.style.display='block';
+}
+const preloaderOff=()=>{
+    const loader=document.querySelector('.preload');
+    loader.style.display='none';
+}
 
     const logOut=()=>{
         toast.success('You have signed out')
@@ -45,6 +58,7 @@ function Detail({userUI, adminUI}) {
     }
     return (
         <>
+        <div className='preload'></div>
             <Navbar userUI={userUI} adminUI={adminUI}/>
             <div className='start profile-page'>
             <div key={userData._id}>

@@ -8,6 +8,17 @@ body{
   background: rgb(243, 240, 234);
   color: orange;
 }
+.preload{
+  background: white url('../assests/Loading_icon.gif') no-repeat center;
+  background-size: 200px;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 2;
+  display: none;
+}
 a{
   text-decoration: none;
   color: orange;

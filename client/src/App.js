@@ -19,6 +19,7 @@ function App() {
   const checkUi=async()=>{
     if(sessionStorage.getItem('adminToken')){
       try {
+        preloader()
         const url='http://localhost:5000/api/admins/verify';
         const response=await fetch(url,{
           method:"GET",
@@ -26,6 +27,7 @@ function App() {
           "authorization":`Bearer ${sessionStorage.getItem('adminToken')}`
           }
         })
+        preloaderOff()
         const parseRes=await response.json();
         if(parseRes.error){
           toast.error(parseRes.error)
@@ -33,10 +35,12 @@ function App() {
           parseRes===true?setIsAdminAuth(true):setIsAdminAuth(false)
         }
       } catch (error) {
+        preloaderOff()
         toast.error('Network Error!')
       }
     } else{
         try {
+          preloader()
             const url='http://localhost:5000/api/verify';
             const response=await fetch(url,{
               method:"GET",
@@ -44,6 +48,7 @@ function App() {
               "authorization":`Bearer ${sessionStorage.getItem('userToken')}`
               }
             })
+            preloaderOff()
             const parseRes=await response.json();
             if(parseRes.error){
               toast.error(parseRes.error)
@@ -51,15 +56,27 @@ function App() {
               parseRes===true?setIsUserAuth(true):setIsUserAuth(false)
             }
           } catch (error) {
+            preloaderOff()
             toast.error('Network Error!')
           }
     }
   }
   useEffect(()=>{
     checkUi();
-  },[])
+  },[]);
+
+  //preloader
+  const preloader=()=>{
+    const loader=document.querySelector('.preload');
+    loader.style.display='block';
+}
+const preloaderOff=()=>{
+    const loader=document.querySelector('.preload');
+    loader.style.display='none';
+}
   return (
   <Router>
+  <div className='preload'></div>
     <Toaster/>
     <Routes>
       <Route path='/' element={isUserAuth||isAdminAuth?(<Home userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>

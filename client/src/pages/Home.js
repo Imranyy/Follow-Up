@@ -94,23 +94,35 @@ function Home({userUI, adminUI}) {
     //get all data
     const getData=async()=>{
         try{
-                    
+            preloader()     
             const url='http://localhost:5000/api/data';
             const response=await fetch(url,{
                 method:"GET"
             })
+            preloaderOff()
             const parseRes=await response.json();
             setData(parseRes)
         }catch(err){
+            preloaderOff()
             toast.error('Network Error!')
         }
     } 
     
     useEffect(()=>{
         getData()
-    },[])
+    },[]);
+    //preloader
+  const preloader=()=>{
+    const loader=document.querySelector('.preload');
+    loader.style.display='block';
+}
+const preloaderOff=()=>{
+    const loader=document.querySelector('.preload');
+    loader.style.display='none';
+}
     return (
         <>
+        <div className='preload'></div>
         <Navbar userUI={userUI} adminUI={adminUI}/>
             <div className='home start'>
                 <div className='grid-podcast'>
