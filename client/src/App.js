@@ -27,7 +27,11 @@ function App() {
           }
         })
         const parseRes=await response.json();
-        parseRes===true?setIsAdminAuth(true):setIsAdminAuth(false)
+        if(parseRes.error){
+          toast.error(parseRes.error)
+        }else{
+          parseRes===true?setIsAdminAuth(true):setIsAdminAuth(false)
+        }
       } catch (error) {
         toast.error('Network Error!')
       }
@@ -41,7 +45,11 @@ function App() {
               }
             })
             const parseRes=await response.json();
+            if(parseRes.error){
+              toast.error(parseRes.error)
+            }else{
               parseRes===true?setIsUserAuth(true):setIsUserAuth(false)
+            }
           } catch (error) {
             toast.error('Network Error!')
           }
@@ -49,15 +57,15 @@ function App() {
   }
   useEffect(()=>{
     checkUi();
-  })
+  },[])
   return (
   <Router>
     <Toaster/>
     <Routes>
-      <Route path='/' element={<LandingPage/>}/>
-      <Route path='/home' element={<Home userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
-      <Route path='/login' element={<SignIn userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
-      <Route path='/register' element={<SignUp userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
+      <Route path='/' element={isUserAuth||isAdminAuth?(<Home userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>
+      <Route path='/home' element={isUserAuth||isAdminAuth?(<Home userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>
+      <Route path='/login' element={isUserAuth||isAdminAuth?(<Home userUI={isUserAuth} adminUI={isAdminAuth}/>):(<SignIn userUI={isUserAuth} adminUI={isAdminAuth}/>)}/>
+      <Route path='/register' element={isUserAuth||isAdminAuth?(<Home userUI={isUserAuth} adminUI={isAdminAuth}/>):(<SignUp userUI={isUserAuth} adminUI={isAdminAuth}/>)}/>
       <Route path='/guide' element={<Guide userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
       <Route path='/user/:id' element={<Detail userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
       <Route path='*' element={<NotFound userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
