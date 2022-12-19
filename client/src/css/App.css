@@ -54,9 +54,11 @@ a{
 .nav-item a{
   text-decoration: none;
   margin-right: 20px;
+  transition: ease-in-out 500ms;
 }
 a:hover{
-  border-bottom: solid 2px orange;
+ color: rgb(17, 78, 78);
+ border-bottom: solid 2px rgb(17, 78, 78);
 }
 .nav-bar .sign-out-btn{
   border: none;
@@ -113,7 +115,7 @@ a:hover{
   right: 50px;
 }
 button:hover{
-  color: black;
+  color: rgb(17, 78, 78);
 }
 .start{
   padding: 100px 20px 0 20px;
@@ -222,6 +224,7 @@ button:hover{
 }
 .menu-bg .menu-list ul li a:hover{
   color: rgb(17, 78, 78);
+  border-bottom: solid 2px rgb(17, 78, 78);
 }
 
 .menu-bg .menu-list button{
