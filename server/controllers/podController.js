@@ -1,6 +1,6 @@
 const User=require('../models/userModel');
 const Admin=require('../models/adminModel');
-const Audio=require('../models/audioModel');
+const Chat=require('../models/chatModel');
 const mongoose=require('mongoose')
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken')
@@ -13,7 +13,8 @@ const registerUser=async(req,res)=>{
             if(pic&&username&&email&&password){
                 //check if user exist in the db
                 const userExit=await User.findOne({email});
-                if(userExit){
+                const userEmail=await User.findOne({username});
+                if(userExit||userEmail){
                     res.send({error:'User already exist!'});
                 }else{
                     //hashing the password
@@ -235,10 +236,10 @@ const protectAdmin=async(req,res,next)=>{
     }
   }
 
-//get all users (admin only)
+//get all users (admin only and users)
 const getUsers=async(req,res)=>{
     try {
-        const users=await User.find({});
+        const users=await User.find({}).sort({createdAt:-1});
         res.status(200).send(users) 
     } catch (error) {
         res.status(500).send(error.message)
@@ -248,14 +249,12 @@ const getUsers=async(req,res)=>{
 //getUserInfo
 const getUserInfo=async(req,res)=>{
     try {
-        const {id}=req.params;
-        if(!mongoose.Types.ObjectId.isValid(id)){
-            return res.status(404).send({error:'No such User'})
-          } 
-          const info=await User.findById({_id:id});
-          res.status(200).send(info);
-          if(!info){
-            res.status(400).send({error:"User doesn't exit!"})
+        const {username}=req.params;
+          const info=await User.findOne({username});
+          if(info){
+              res.status(200).send(info);
+            }else{
+              res.status(400).send({error:"User doesn't exit!"})
           }
     } catch (error) {
         res.status(500).send(error.message)
@@ -309,7 +308,7 @@ const adminDeleteAnyData=async(req,res)=>{
         if(!mongoose.Types.ObjectId.isValid(dataid)){
             return res.status(404).send({error:"No such Audio"})
           } 
-          const deleteData=await Audio.findByIdAndDelete({_id:dataid})
+          const deleteData=await Chat.findByIdAndDelete({_id:dataid})
           if(deleteData){
               res.status(200).send({msg:'Audio deleted!',deleteData});
             }else{
@@ -323,7 +322,7 @@ const adminDeleteAnyData=async(req,res)=>{
 //get all  data (users and admins)
 const getData=async(req,res)=>{
     try {
-        const data=await Audio.find({});
+        const data=await Chat.find({});
         res.send(data);
     } catch (error) {
         res.status(500).send(error.message)
@@ -337,10 +336,10 @@ const deleteData=async(req,res)=>{
         if(!mongoose.Types.ObjectId.isValid(dataid)){
             return res.status(404).send({error:"No such Audio"})
           } 
-          const dataFound=await Audio.findById({_id:dataid});
+          const dataFound=await Chat.findById({_id:dataid});
           if(dataFound){
             const {userID}=req.body;
-            const userDeletes=await Audio.findOneAndDelete({userID})
+            const userDeletes=await Chat.findOneAndDelete({userID})
             if(userDeletes){
                 res.status(200).send({msg:"Audio deleted",userDeletes})
             }else if(!userDeletes){
@@ -356,13 +355,13 @@ const deleteData=async(req,res)=>{
 }
 
 //upload an audio
-const uploadAudio=async(req,res)=>{
+const uploadMessage=async(req,res)=>{
    try {
-    const {userID,pic,username,audioURL}=req.body;
-    const audio= await Audio.create({
-        userID,pic,username,audioURL
+    const {userID,pic,username,message}=req.body;
+    const audio= await Chat.create({
+        userID,pic,username,message
     })
-    res.status(200).send({msg:'Audio sent successful',audio})
+    res.status(200).send({msg:'Message Sent'})
    } catch (error) {
     res.status(500).send({error:"Failed to send!"});
    }
@@ -378,7 +377,7 @@ module.exports={
     deleteUser,
     getData,
     deleteData,
-    uploadAudio,
+    uploadMessage,
     getUsers,
     loginAdmin,
     registerAdmin, 

@@ -19,22 +19,28 @@ function LoginNav({userUI, adminUI}) {
     const closeMenu=()=>{
         document.querySelector('.menu-list-bg').style.display='none';
     }
+    const showUsers=()=>{
+        // document.querySelector('.bg').style.transition='ease-in-out 500ms';
+        document.querySelector('.bg').classList.add('show');
+    }
+    const closeUsers=()=>{
+        document.querySelector('.bg').classList.remove('show')
+    }
     return (
         <>
-            <nav className='nav-bar'>
+            <nav className='nav-bar logged-in' style={{display:'none'}}>
                 <div className='side-bar'>
                     <ul>
-                        <li><Link to='/home'>home</Link></li>
-                        <li><Link to='/home'>Users</Link></li>
-                        <li><Link to='/home'>chats</Link></li>
+                        <li onClick={closeUsers}><Link to='/topics'>Topic</Link></li>
+                        <li><a href='#' onDoubleClick={closeUsers} onClick={showUsers}>Users</a></li>
+                        <li onClick={closeUsers}><Link to='/chats'>chats</Link></li>
                     </ul>
                 </div>
-                <div className='nav-bar'>
-                    <div className='brand-name'><Link to='/home'>Voice Tweet🐌</Link></div>
+                <div className='nav-bar' onClick={closeUsers}>
+                    <div className='brand-name'><Link to='/home'>Follow up🐌</Link></div>
                     <ul className='nav-item'>
-                        <li className='logged-in' style={{display:'none'}}><Link to='/home'>Home</Link></li>
-                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('userID')}`}>{localStorage.getItem('username')}</Link></li>
-                        <li className='logged-out' style={{display:'none'}}><Link to='/login'>Sign In</Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to='/topics'>Home</Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`}>{localStorage.getItem('username')}</Link></li>
                         <li><button onClick={showMenu} className='menu-btn'>Menu</button></li>
                     </ul>
                 
@@ -44,9 +50,8 @@ function LoginNav({userUI, adminUI}) {
                 <div className='menu-list'>
                     <button onClick={closeMenu}>Close</button>
                     <ul>
-                        <li><Link to='/home' onClick={closeMenu}>Home</Link></li>
-                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('userID')}`} onClick={closeMenu}>{localStorage.getItem('username')}</Link></li>
-                        <li className='logged-out' style={{display:'none'}}><Link to='/login' onClick={closeMenu}>Sign In</Link></li>
+                        <li><Link to='/topics' onClick={closeMenu}>Topics</Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`} onClick={closeMenu}>{localStorage.getItem('username')}</Link></li>
                     </ul>
                 </div>
             </div>   

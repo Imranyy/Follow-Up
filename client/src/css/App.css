@@ -64,7 +64,7 @@ a{
   bottom: 0;
   padding: 100px 30px;
   width: fit-content;
-  background:steelblue;
+  background: orange;
 }
 .nav-bar .side-bar ul{
   list-style: none;
@@ -217,6 +217,7 @@ button:hover{
   width: 110px;
 }
 .nav ul .menu{
+  display: none;
   background: none;
   border: none;
   font-size: larger;
@@ -226,7 +227,6 @@ button:hover{
   position: absolute;
   top: 20px;
   right: 20px;
-  display: none;
 }
 .nav ul .menu:hover{
   color: rgb(17, 78, 78);
@@ -471,6 +471,7 @@ footer ul li a:hover{
   border: none;
   color: orange;
 }
+
 /* guide-page CSS */
 .guide-page .hero-image{
   height: fit-content;
@@ -494,68 +495,135 @@ footer ul li a:hover{
   width: 40vw;
 }
 
-/* home page css */
-.home .grid-podcast{
- display: flex;
- flex-direction: column;
- justify-content: center;
-}
-/* .home .grid-podcast :nth-child(2){
-  float: right;
-} */
-.home form{
-  display: flex;
-  position: fixed;  
-  bottom: 50px;
-  width: 90vw;
-  padding: 0 0 0 50px;
-}
-.home form input{
+/* users component css */
+.bg{
   display: none;
-  width: 80vw;
-  height: 30px;
-  padding-left: 20px;
-  border-radius: 5px;
-  border:  solid 1px grey;
-}
-.home form button{
-  height: 35px;
-  width: 100px;
-  color:white;
-  background: orange;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-.home audio {
-  border: 2px solid orange;
-  border-radius: 10px;
-  width: 50vw;
-  height: 30px;
-}
-.home .add-btn{
-  width: 60px;
-  height: 60px;
-  color: white;
-  font-size: 30px;
-  font-weight: 700;
-  background: orange;
-  border-radius: 80px;
-  border: none;
   position: fixed;
-  bottom: 50px;
-  right: 50px;
-  cursor: pointer;
-  transition: ease-out 10ms;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: ease-in-out 500ms;
 }
-.home .add-btn:hover{
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.9);
+.show{
+  display: block;
+}
+.all-users-page{
+ position: fixed;
+ background: orange;
+ top: 0;
+ bottom: 0;
+ left: 60vw;
+ right: 0;
+ z-index: 150;
+ padding: 102px 50px;
+ overflow-y: scroll;
+ overflow-x: hidden;
+}
+.all-users-page .card{
+  width: 20vw;
+  margin: 20px 0;
+  padding: 6px 20px;
+  border-radius: 10px;
+  justify-self: center;
+  background: #f2f2f2;
+  cursor: pointer;
+  display: flex;
+}
+.all-users-page .card .card-image img{
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+}
+.all-users-page .card .card-image a:hover{
+  border: none;
+}
+.all-users-page .card .content{
+  padding:5px 20px;
+}
+
+/* chat page css */
+.chat-page{
+  display: flex;
+  flex-direction: column;
+  padding: 120px  50px 50px 150px;
+  background: url('../assests/whitebg.jpg');
+}
+.chat-page .chat-window{
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 70px 0;
+}
+.chat-page .chat-window .right{
+  display: flex;
+  justify-content: flex-end;
+}
+.chat-page .chat-window .card{
+  display: flex;
+  width: 20vw;
+  margin: 20px 0;
+  padding: 6px 20px;
+  border-radius: 10px;
+  background:orange;
+}
+.chat-page .chat-window .card img{
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+}
+.chat-page .chat-window .card a:hover{
+  border:none;
+}
+.chat-page .chat-window .card .content{
+  padding: 20px 0 20px 10px;
+}
+.chat-page form{
+  position: fixed;
+  background: rgb(243, 240, 234);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  font-size: medium;
+  padding:10px 30px 2vw 150px;
+}
+.chat-page form textarea{
+  border: none;
+  border-radius: 5px;
+  width: 80vw;
+  height: 20px;
+  padding: 10px 10px;
+  font-size: 15px;
+  font-weight: lighter;
+}
+.chat-page form textarea::placeholder{
+  color: rgb(17, 78, 78);
+  font-size: 15px;
+  font-weight: lighter;
+}
+.chat-page form button{
+  margin-left: 10px;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: lighter;
+  background: orange;
+  border: none;
+  color: white;
+  width: 10vw;
+  height: 40px;
+  cursor: pointer;
+  transition: ease-in-out 500ms;
+}
+.chat-page form button:hover{
+  background: rgb(17, 78, 78);
+  color: orange;
 }
 
 /* sign in page */
 .sign-in{
-  position: fixed;
+  position: absolute;
   z-index:-10;
   top:80px;
   bottom: 0;
@@ -619,4 +687,27 @@ footer ul li a:hover{
   background: rgb(17, 78, 78);
   color: orange;
   width: 102px;
+}
+/* topic page css */
+.topics-page{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 120px  50px 50px 150px;
+  background: url('../assests/whitebg.jpg');
+}
+/* profile-page */
+.profile-page{
+  padding: 150px  50px 50px 150px;
+  width: fit-content;
+}
+
+/* not-found page css*/
+.not-found{
+  display: flex;
+  font-size: 13px;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
 }

@@ -5,15 +5,15 @@ import LoginNav from '../components/LoginNav';
 
 function Detail({userUI, adminUI}) {
     const navigate=useNavigate();
-    const {id}=useParams();
+    const {username}=useParams();
     const [userData,setUserData]=useState('');
 
     const getUserDetails=async()=>{
         try {
             preloader();
-            const url=`http://localhost:5000/api/users/${id}`;
+            const url=`http://localhost:5000/api/users/${username}`;
             const response=await fetch(url,{
-                method:"POST",
+                method:"GET",
                 headers:{
                     "authorization":`Bearer ${sessionStorage.getItem('userToken')}`
                 }
@@ -21,7 +21,7 @@ function Detail({userUI, adminUI}) {
             preloaderOff();
             const parseRes=await response.json();
             if(parseRes.error){
-                toast.error(parseRes.error);
+                // toast.error(parseRes.error);
                 navigate('/')
             }else{
                 setUserData(parseRes);
@@ -60,12 +60,11 @@ const preloaderOff=()=>{
         <>
         <div className='preload'></div>
             <LoginNav userUI={userUI} adminUI={adminUI}/>
-            <div className='start profile-page'>
+            <div className='profile-page'>
             <div key={userData._id}>
                 <h1>Pic {userData.pic}</h1>
                 <h2>{userData.username}</h2>
                 <h3>{userData.email}</h3>
-                <Link to='/'>Add a testimonial</Link>
                 <button className='sign-out-btn' onClick={logOut} >Sign Out</button>
             </div>
             </div>

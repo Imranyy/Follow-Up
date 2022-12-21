@@ -34,7 +34,7 @@ function LandingPage(props) {
         <div className='land-page'>
             <div className='hero-image'>
                 <nav className='nav'>
-                    <div className='nav-item logo'><h1>Voice Tweet🐌</h1></div>
+                    <div className='nav-item logo'><h1>Follow Up🐌</h1></div>
                     <ul role='navigation'>
                         <div className='nav-item'>
                             <Link to='/login'>Login</Link>

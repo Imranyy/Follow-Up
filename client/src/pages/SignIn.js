@@ -22,7 +22,6 @@ function SignIn({userUI,adminUI}) {
                 }
             })
             const parseRes=await response.json();
-            console.log(parseRes);
             if(parseRes.error){
                 toast.error(parseRes.error);
             }else{

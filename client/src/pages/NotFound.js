@@ -6,9 +6,13 @@ function NotFound({userUI, adminUI}) {
     return (
     <>
         <LoginNav userUI={userUI} adminUI={adminUI}/>
-        <div className='start '>
-            <h2>Oops...This page doesn't exit</h2>
-            <Link to='/'>Go back Home page.</Link>
+        <div className='not-found'>
+            <div>
+                <h2>Oops...This page doesn't exit</h2>
+            </div>
+            <div>
+                <Link to='/'>Go back Home page.</Link>
+            </div>
         </div>
     </>
     );

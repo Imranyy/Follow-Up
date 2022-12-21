@@ -72,6 +72,9 @@
 }
 
 @media screen and (max-width:550px){
+  .nav .nav-item{
+    display: none;
+  }
   .nav ul .menu{
     display: block;
   }
@@ -101,14 +104,12 @@
 }
 
 @media screen and (max-width:500px){
+  
   .nav-bar .menu-btn{
     display: block;
   }
   .nav-bar .sign-out-btn,nav .nav-item li a{
     display:none;
-  }
-  .nav .nav-item{
-    display: none;
   }
 }
 
@@ -136,8 +137,11 @@
     padding-left: 5px;
   }
   .talk-to-us .content{
-    padding-left: 50px;
+    width: 80vw;
   }
+  .testimonials-header {
+  font-size: 8vw;
+}
   .talk-to-us .content p{
     width: 150px;
   }

@@ -17,12 +17,13 @@ function SignUp({userUI,adminUI}) {
         if(password===confirmPassword){
             if(window.confirm("MAKE SURE YOU'VE READ OUR TERMS AND CONDITIONS BEFORE SIGNING UP!!")){
                 try {
+                    const $username=username.charAt(0).toLowerCase()+ username.slice(1);
                     const url=`http://localhost:5000/api/register`;
                     const response= await fetch(url,{
                         method:"POST",
                         body:JSON.stringify({
                             pic:1,
-                            username,
+                            username:$username,
                             email,
                             password:confirmPassword
                         }),

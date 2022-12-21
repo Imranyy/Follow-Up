@@ -14,7 +14,7 @@ function Guide(props) {
         navigate('/register')
     }
     const emailUs=()=>{
-        window.location.href=`mailto:imranmat254@gmail.com?subject=Message from a User in Voice Tweet🐌 concerning platform guides`
+        window.location.href=`mailto:imranmat254@gmail.com?subject=Message from a User in Follow Up🐌 concerning platform guides`
     }
     const back=()=>{
         navigate('/')
@@ -24,7 +24,7 @@ function Guide(props) {
          <div className='guide-page'>
             <div className='hero-image'>
                 <nav className='nav'>
-                    <div className='nav-item logo' onClick={back}><h1>Voice Tweet🐌</h1></div>
+                    <div className='nav-item logo' onClick={back}><h1>Follow Up🐌</h1></div>
                     <ul role='navigation'>
                         <div className='nav-item'>
                             <Link to='/login'>Login</Link>
@@ -45,7 +45,7 @@ function Guide(props) {
                 </nav>
 
                 <div className='content'>
-                    <h1><span>Voice</span> <span>Tweet🐌</span> <span className='orange'>Guides</span></h1>
+                    <h1><span>Follow</span> <span>Up🐌</span> <span className='orange'>Guides</span></h1>
                     <p>These are the terms and conditions adhered on this platform</p>
                     <button onClick={emailUs}>Contact Us</button>
                 </div>
