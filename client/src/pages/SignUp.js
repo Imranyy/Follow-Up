@@ -30,7 +30,6 @@ function SignUp({userUI,adminUI}) {
                     }
                 })
                 const parseRes=await response.json();
-                console.log(parseRes);
                 if(parseRes.error){
                     toast.error(parseRes.error)
                 }else{
@@ -46,7 +45,6 @@ function SignUp({userUI,adminUI}) {
                     },200)
                 }
             } catch (error) {
-                console.log(error.message);
                 toast.error(error.message);
             }
            }else{

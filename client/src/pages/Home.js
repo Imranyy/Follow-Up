@@ -81,7 +81,6 @@ function Home({userUI, adminUI}) {
                        console.log(parseRes);
                        setUploadedFile(parseRes.results);
                 } catch (error) {
-                    console.log(error.message)
                   toast.error("Network Error!")
                 }
           })
@@ -130,7 +129,7 @@ const preloaderOff=()=>{
                         {data&&data.map(audio=>{
                             if(audio.username===localStorage.getItem('username')){
                                 return(
-                                    <div style={{float:'right'}} className='card' >
+                                    <div key={audio._id} style={{float:'right'}} className='card' >
                                         <h3>{audio.username}</h3>
                                         <p>{audio.pic}</p>
                                         <audio controls loop>
@@ -140,7 +139,7 @@ const preloaderOff=()=>{
                                 )
                             }else{
                                 return(
-                                    <div style={{float:'left'}} className='card' >
+                                    <div  key={audio._id} style={{float:'left'}} className='card' >
                                         <h3>{audio.username}</h3>
                                         <p>{audio.pic}</p>
                                         <audio controls loop>
@@ -158,7 +157,7 @@ const preloaderOff=()=>{
                     {recordBtn}
                     <button className='submit-btn' style={{display:'none'}} type='submit'>Submit</button>
                 </form>
-                <button className='add-btn' onClick={showForm}><i class="fa-solid fa-browser"></i></button>
+                <button className='add-btn' onClick={showForm}><i className="fa-solid fa-browser"></i></button>
             </div>
         </>
     );

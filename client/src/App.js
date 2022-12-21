@@ -63,7 +63,7 @@ function App() {
   }
   useEffect(()=>{
     checkUi();
-  },[]);
+  },[isUserAuth,isAdminAuth]);
 
   //preloader
   const preloader=()=>{

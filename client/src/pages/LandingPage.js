@@ -163,8 +163,8 @@ function LandingPage(props) {
                         <li><a href='https://twitter.com/imran_matano' target='_blank'>Twitter</a></li>
                         <li><a href='https://instagram.com/imrany00' target='_blank'>Instagram</a></li>
                         <li>
-                            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="imrany-tech-60645323a" data-version="v1">
-                                <a class="badge-base__link LI-simple-link" href="https://ke.linkedin.com/in/imranyy?trk=profile-badge">
+                            <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="imrany-tech-60645323a" data-version="v1">
+                                <a className="badge-base__link LI-simple-link" target='_blank' href="https://ke.linkedin.com/in/imranyy?trk=profile-badge">
                                     LinkedIn
                                 </a>
                             </div>

@@ -13,7 +13,6 @@ function Navbar({userUI,adminUI}) {
       loggedinLink.forEach(item=>item.style.display='block')
       loggedoutLink.forEach(item=>item.style.display='none')
     }
-    console.log(userUI)
     //👌🎨📣🎧
     const showMenu=()=>{
         document.querySelector('.menu-list-bg').style.display='block';

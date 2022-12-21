@@ -34,11 +34,10 @@ function SignIn({userUI,adminUI}) {
                 sessionStorage.setItem('userToken',parseRes.token);
                 navigate('/');
                 setTimeout(()=>{
-                    window.location.reload()
-                },200)
-            }
+                        window.location.reload()
+                    },50)
+                }
         } catch (error) {
-            console.log(error.message);
             toast.error('Network Error!');
         }
     }
