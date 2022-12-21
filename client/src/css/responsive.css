@@ -5,6 +5,16 @@
     grid-template-columns: repeat(1,1fr);
     
   }
+  .guide-page .guides{
+    display: grid;
+    grid-template-columns: auto;
+  }
+  .guide-page .guides p{
+    padding: 20px 0;
+    font-weight: lighter;
+    font-size: medium;
+    width: 60vw;
+  }
 }
 @media screen and (max-width:750px){
   .content h1{
@@ -150,8 +160,11 @@
   }
 
   /* sigin pages forms */
+  .nav-bar1 .brand-name a{
+    font-size: 8vw;
+  }
   .nav-bar .brand-name a{
-    font-size: 20px;
+    font-size:  8vw;
   }
   .sign-in form input{
     width: 80vw;

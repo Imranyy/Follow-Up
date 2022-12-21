@@ -4,6 +4,7 @@ import mic from '../assests/mic.png';
 import anime from '../assests/anime.png';
 import comp from '../assests/comp.png';
 import { toast } from 'react-hot-toast';
+import Footer from '../components/Footer';
 function LandingPage(props) {
     const navigate=useNavigate();
     const [name,setName]=useState('');
@@ -15,10 +16,7 @@ function LandingPage(props) {
     const handleEmail=async(e)=>{
         e.preventDefault();
         try {
-            const url=`mailto:imranmat254@gmail.com?subject=${name}&body=${email+message}`
-            await fetch(url,{
-                method:"POST",
-            })
+            window.location.href=`mailto:imranmat254@gmail.com?subject=Message from ${name} ${email}&body=${message}`
         } catch (error) {
             toast.error('Message not sent!')
         }
@@ -28,6 +26,9 @@ function LandingPage(props) {
     }
     const closeMenu=()=>{
         document.querySelector('.menu-bg').style.display='none';
+    }
+    const toGuide=()=>{
+        navigate('/guide')
     }
     return (
         <div className='land-page'>
@@ -57,7 +58,7 @@ function LandingPage(props) {
                 <div className='content'>
                     <h1><span>Connect</span> <span>with</span> <span className='orange'>different</span> <span>people</span></h1>
                     <p>Essentially, This platform connects people and enable them to chat via voice messages</p>
-                    <button onClick={signUp}>Get Started</button>
+                    <button onClick={toGuide}>Get Started</button>
                 </div>
             </div>
 
@@ -150,36 +151,11 @@ function LandingPage(props) {
                     <label>Email</label>
                     <input type='email' placeholder='john@gmail.com' onChange={e=>setEmail(e.target.value)} required/>
                     <label>Message</label>
-                    <textarea placeholder='Hello,..' onChange={e=>setMessage(e.target.value)} required></textarea>
+                    <textarea autoCorrect='on' autoComplete="on" placeholder='Hello,..' onChange={e=>setMessage(e.target.value)} required></textarea>
                     <button>Submit</button>
                 </form>
             </div>
-
-            <footer>
-                <div className='social-media-links'>
-                    <h2>Social Media Links</h2>
-                    <ul>
-                        <li><a href='https://wa.me/+254754423664' target='_blank'>Whatsapp</a></li>
-                        <li><a href='https://twitter.com/imran_matano' target='_blank'>Twitter</a></li>
-                        <li><a href='https://instagram.com/imrany00' target='_blank'>Instagram</a></li>
-                        <li>
-                            <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="imrany-tech-60645323a" data-version="v1">
-                                <a className="badge-base__link LI-simple-link" target='_blank' href="https://ke.linkedin.com/in/imranyy?trk=profile-badge">
-                                    LinkedIn
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div className='quick-links'>
-                    <h2>Quick Links</h2>
-                    <ul>
-                        <li><Link to='/register'>Sign Up</Link></li>
-                        <li><Link to='/login'>Login</Link></li>
-                        <li><Link to='/guide'>Guide Lines</Link></li>
-                    </ul>
-                </div>
-            </footer>
+            <Footer/>
         </div>
     );
 }

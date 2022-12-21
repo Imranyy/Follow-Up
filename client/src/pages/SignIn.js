@@ -43,7 +43,7 @@ function SignIn({userUI,adminUI}) {
     }
     return (
         <>
-        <Navbar userUI={userUI} adminUI={adminUI}/>
+        <Navbar/>
             <div className='sign-in start'>
                 <form onSubmit={handleLogin}>
                     <label>Email</label>

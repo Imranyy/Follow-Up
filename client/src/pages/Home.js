@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { toast } from 'react-hot-toast';
-import Navbar from '../components/Navbar';
+import LoginNav from '../components/LoginNav';
 import { projectStorage,ref,getDownloadURL,uploadBytesResumable} from '../fireBaseConfig/fireConfig';
 
 function Home({userUI, adminUI}) {
@@ -122,7 +122,7 @@ const preloaderOff=()=>{
     return (
         <>
         <div className='preload'></div>
-        <Navbar userUI={userUI} adminUI={adminUI}/>
+        <LoginNav userUI={userUI} adminUI={adminUI}/>
             <div className='home start'>
                 <div className='grid-podcast'>
                     <div className='grid-item'>

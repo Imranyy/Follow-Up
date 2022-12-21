@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import LoginNav from '../components/LoginNav';
 
 function Detail({userUI, adminUI}) {
     const navigate=useNavigate();
@@ -59,7 +59,7 @@ const preloaderOff=()=>{
     return (
         <>
         <div className='preload'></div>
-            <Navbar userUI={userUI} adminUI={adminUI}/>
+            <LoginNav userUI={userUI} adminUI={adminUI}/>
             <div className='start profile-page'>
             <div key={userData._id}>
                 <h1>Pic {userData.pic}</h1>

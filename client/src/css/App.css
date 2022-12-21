@@ -6,7 +6,7 @@
 }
 body{
   background: rgb(243, 240, 234);
-  color: orange;
+  color: rgb(17, 78, 78);
 }
 .preload{
   background: white url('../assests/Loading_icon.gif') no-repeat center;
@@ -23,7 +23,10 @@ a{
   text-decoration: none;
   color: orange;
 }
-.nav-bar{
+.logo{
+  cursor: pointer;
+}
+.nav-bar1{
   background: rgb(250, 245, 237);
   position: fixed;
   left: 0;
@@ -33,9 +36,49 @@ a{
   box-shadow:0 2px 4px 0 rgba(0,0,0,.2);
   z-index: 100;
 }
-.nav-bar .brand-name a{
+.nav-bar1 .brand-name a{
   position: fixed;
   left: 20px;
+  top: 20px;
+  font-size: 30px;
+  font-weight:900;
+  text-decoration: none;
+  border: none;
+}
+.nav-bar{
+  background: rgb(250, 245, 237);
+  position: fixed;
+  left: 102px;
+  right: 0;
+  top: 0;
+  height: 80px;
+  /* box-shadow:0 2px 4px 0 rgba(0,0,0,.2); */
+  z-index: 100;
+  border-bottom:2px solid rgba(0,0,0,.2);
+}
+.nav-bar .side-bar{
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 100px 30px;
+  width: fit-content;
+  background:steelblue;
+}
+.nav-bar .side-bar ul{
+  list-style: none;
+}
+.nav-bar .side-bar ul li {
+  padding: 20px 0;
+}
+.nav-bar .side-bar ul li a{
+  color: #f2f2f2;
+}
+
+.nav-bar .brand-name a{
+  position: fixed;
+  left: 109px;
   top: 20px;
   font-size: 30px;
   font-weight:900;
@@ -427,6 +470,28 @@ footer ul li a{
 footer ul li a:hover{
   border: none;
   color: orange;
+}
+/* guide-page CSS */
+.guide-page .hero-image{
+  height: fit-content;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),url('../assests/comp.png') no-repeat top;
+  background-size: cover;
+  width: 100%;
+}
+.guide-page .guides{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  line-height: 25px;
+  font-weight: 600;
+  font-size: large;
+  padding: 50px 0;
+  justify-items: center;
+}
+.guide-page .guides p{
+  padding: 20px 0;
+  font-weight: lighter;
+  font-size: medium;
+  width: 40vw;
 }
 
 /* home page css */
