@@ -48,7 +48,7 @@ a{
 .nav-bar{
   background: rgb(250, 245, 237);
   position: fixed;
-  left: 102px;
+  left: 0;
   right: 0;
   top: 0;
   height: 80px;
@@ -58,7 +58,7 @@ a{
 }
 .nav-bar .side-bar{
   position: fixed;
-  z-index: 100;
+  z-index: 110;
   top: 0;
   left: 0;
   bottom: 0;
@@ -73,7 +73,14 @@ a{
   padding: 20px 0;
 }
 .nav-bar .side-bar ul li a{
-  color: #f2f2f2;
+  padding:7px 8px;
+  border-radius: 90px;
+  background: white;
+  color: orange;
+  font-size: 25px;
+}
+.nav-bar .side-bar ul li a:hover{
+  border: none;
 }
 
 .nav-bar .brand-name a{
@@ -220,7 +227,7 @@ button:hover{
   display: none;
   background: none;
   border: none;
-  font-size: larger;
+  font-size: 6vw;
   font-weight: 600;
   color: orange;
   cursor: pointer;
@@ -273,7 +280,7 @@ button:hover{
 .menu-bg .menu-list button{
   color: orange;
   cursor: pointer;
-  font-size: large;
+  font-size: 6vw;
   font-weight:700;
   border: none;
   background: none;

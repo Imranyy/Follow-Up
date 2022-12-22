@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AiFillInstagram, AiFillLinkedin, AiOutlineTwitter, AiOutlineWhatsApp } from "react-icons/ai";
 
 function Footer(props) {
     return (
@@ -7,13 +8,13 @@ function Footer(props) {
                 <div className='social-media-links'>
                     <h2>Social Media Links</h2>
                     <ul>
-                        <li><a href='https://wa.me/+254754423664' target='_blank'>Whatsapp</a></li>
-                        <li><a href='https://twitter.com/imran_matano' target='_blank'>Twitter</a></li>
-                        <li><a href='https://instagram.com/imrany00' target='_blank'>Instagram</a></li>
+                        <li><a href='https://wa.me/+254754423664' target='_blank'><AiOutlineWhatsApp/> Whatsapp</a></li>
+                        <li><a href='https://twitter.com/imran_matano' target='_blank'><AiOutlineTwitter/> Twitter</a></li>
+                        <li><a href='https://instagram.com/imrany00' target='_blank'><AiFillInstagram/> Instagram</a></li>
                         <li>
                             <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="imrany-tech-60645323a" data-version="v1">
                                 <a className="badge-base__link LI-simple-link" target='_blank' href="https://ke.linkedin.com/in/imranyy?trk=profile-badge">
-                                    LinkedIn
+                                   <AiFillLinkedin/> LinkedIn 
                                 </a>
                             </div>
                         </li>

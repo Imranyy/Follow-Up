@@ -81,7 +81,6 @@ const preloaderOff=()=>{
                                             </div>
                                             <div className='content'>
                                                 <h3>You</h3>
-                                                {/* <p>{data.pic}</p> */}
                                                 <p>{data.message?data.message:'No message'}</p>
                                                 <sub></sub><br/>
                                                 <small style={{fontSzie:'12px',fontFamily:'monospace',paddingLeft:'14vw'}}>{data.createdAt.slice(11,16)}</small>
@@ -97,7 +96,6 @@ const preloaderOff=()=>{
                                             </div>
                                        <div className='content'>
                                             <h3>{data.username}</h3>
-                                            {/* <p>{data.pic}</p> */}
                                             <p>{data.message?data.message:'No message'}</p>
                                             <small style={{fontSzie:'12px',fontFamily:'monospace',paddingLeft:'14vw'}}>{data.createdAt.slice(11,16)}</small>
                                         </div>

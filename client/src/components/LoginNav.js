@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {  FaHome,FaUser, FaUserCircle, FaUserFriends} from 'react-icons/fa';
+import {BsFillChatDotsFill} from 'react-icons/bs';
+import { AiOutlineCloseSquare, AiOutlineMenu } from 'react-icons/ai';
 
 function LoginNav({userUI, adminUI}) {
     const loggedinLink=document.querySelectorAll('.logged-in');
@@ -31,27 +34,27 @@ function LoginNav({userUI, adminUI}) {
             <nav className='nav-bar logged-in' style={{display:'none'}}>
                 <div className='side-bar'>
                     <ul>
-                        <li onClick={closeUsers}><Link to='/topics'>Topic</Link></li>
-                        <li><a href='#' onDoubleClick={closeUsers} onClick={showUsers}>Users</a></li>
-                        <li onClick={closeUsers}><Link to='/chats'>chats</Link></li>
+                        <li onClick={closeUsers}><Link to='/topics'><FaHome/></Link></li>
+                        <li><a href='#' onDoubleClick={closeUsers} onClick={showUsers}><FaUserFriends/></a></li>
+                        <li onClick={closeUsers}><Link to='/chats'><BsFillChatDotsFill/></Link></li>
                     </ul>
                 </div>
                 <div className='nav-bar' onClick={closeUsers}>
                     <div className='brand-name'><Link to='/home'>Follow up🐌</Link></div>
                     <ul className='nav-item'>
-                        <li className='logged-in' style={{display:'none'}}><Link to='/topics'>Home</Link></li>
-                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`}>{localStorage.getItem('username')}</Link></li>
-                        <li><button onClick={showMenu} className='menu-btn'>Menu</button></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to='/topics'><FaHome/></Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`}><FaUserCircle/></Link></li>
+                        <li><button onClick={showMenu} className='menu-btn'><AiOutlineMenu/></button></li>
                     </ul>
                 
                 </div>
             </nav>
             <div className='menu-list-bg' onClick={closeMenu}>
                 <div className='menu-list'>
-                    <button onClick={closeMenu}>Close</button>
+                    <button onClick={closeMenu}><AiOutlineCloseSquare/></button>
                     <ul>
-                        <li><Link to='/topics' onClick={closeMenu}>Topics</Link></li>
-                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`} onClick={closeMenu}>{localStorage.getItem('username')}</Link></li>
+                        <li><Link to='/topics' onClick={closeMenu}><FaHome/></Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`} onClick={closeMenu}><FaUser/></Link></li>
                     </ul>
                 </div>
             </div>   

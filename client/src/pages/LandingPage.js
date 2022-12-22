@@ -5,6 +5,7 @@ import anime from '../assests/anime.png';
 import comp from '../assests/comp.png';
 import { toast } from 'react-hot-toast';
 import Footer from '../components/Footer';
+import { AiOutlineCloseSquare, AiOutlineMenu} from "react-icons/ai";
 function LandingPage(props) {
     const navigate=useNavigate();
     const [name,setName]=useState('');
@@ -40,11 +41,11 @@ function LandingPage(props) {
                             <Link to='/login'>Login</Link>
                             <button onClick={signUp}>Sign Up</button>
                         </div>
-                        <button className='menu' onClick={showMenu}>Menu</button>
+                        <button className='menu' onClick={showMenu}><AiOutlineMenu/></button>
                     </ul>
                     <div className='menu-bg' onClick={closeMenu}>
                         <div className='menu-list'>
-                            <button onClick={closeMenu}>Close</button>
+                            <button onClick={closeMenu}><AiOutlineCloseSquare/></button>
                             <ul>
                                 <li><Link to='/login' onClick={closeMenu}>Login</Link></li>
                                 <li><Link to='/register' onClick={closeMenu}>Sign Up</Link></li>
