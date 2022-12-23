@@ -1,8 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { toast } from 'react-hot-toast';
 import LoginNav from '../components/LoginNav';
-import img from '../assests/comp.png';
-import img1 from '../assests/anime.png';
 import io from 'socket.io-client';
 
 const socket=io.connect('http://localhost:5000')
@@ -66,13 +64,13 @@ const preloaderOff=()=>{
                                         <div className='right' key={data._id}>
                                         <div className='card' title={`Sent on ${data.createdAt.slice(0,10)}`}>
                                             <div className='card-image'>
-                                                <a href={`${img}`} target='_blank' rel='noopener'><img src={img} alt='.'/></a>
+                                                <a href={`${data.pic}`} target='_blank' rel='noopener'><img src={data.pic} alt='.'/></a>
                                             </div>
                                             <div className='content'>
                                                 <h3>You</h3>
                                                 <p>{data.message?data.message:'No message'}</p>
                                                 <sub></sub><br/>
-                                                <small style={{fontSzie:'12px',fontFamily:'monospace',paddingLeft:'14vw'}}>{data.createdAt.slice(11,16)}</small>
+                                                <small style={{fontSzie:'12px',fontFamily:'monospace',padding:'14vw 5px 0 45vw'}}>{data.createdAt.slice(11,16)}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -81,12 +79,12 @@ const preloaderOff=()=>{
                                 return(
                                     <div  key={data._id} className='card' title={`Sent on ${data.createdAt.slice(0,10)}`}>
                                         <div className='card-image'>
-                                                <a href={`${img1}`} target='_blank' rel='noopener'><img src={img1} alt='.'/></a>
+                                                <a href={`${data.pic}`} target='_blank' rel='noopener'><img src={data.pic} alt='.'/></a>
                                             </div>
                                        <div className='content'>
                                             <h3>{data.username}</h3>
                                             <p>{data.message?data.message:'No message'}</p>
-                                            <small style={{fontSzie:'12px',fontFamily:'monospace',paddingLeft:'14vw'}}>{data.createdAt.slice(11,16)}</small>
+                                            <small style={{fontSzie:'12px',fontFamily:'monospace',padding:'14vw 5px 0 45vw'}}>{data.createdAt.slice(11,16)}</small>
                                         </div>
                                     </div>
                                 )

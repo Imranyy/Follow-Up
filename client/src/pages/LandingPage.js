@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import mic from '../assests/mic.png';
-import anime from '../assests/anime.png';
-import comp from '../assests/comp.png';
+import mic from '../assests/social-gif.gif';
+import anime from '../assests/msg3.jpg';
+import comp from '../assests/msg3.jpg';
 import { toast } from 'react-hot-toast';
 import Footer from '../components/Footer';
+import Support from '../components/Support';
 import { AiOutlineCloseSquare, AiOutlineMenu} from "react-icons/ai";
+
 function LandingPage(props) {
     const navigate=useNavigate();
     const [name,setName]=useState('');
@@ -31,8 +33,15 @@ function LandingPage(props) {
     const toGuide=()=>{
         navigate('/guide')
     }
+    const showSupport=()=>{
+        document.querySelector('.support').style.display='block'
+    }
+    // const closeSupport=()=>{
+    //     document.querySelector('.support').style.display='none'
+    // }
     return (
-        <div className='land-page'>
+        <div className='land-page' >
+            <Support/>
             <div className='hero-image'>
                 <nav className='nav'>
                     <div className='nav-item logo'><h1>Follow Up🐌</h1></div>
@@ -58,7 +67,7 @@ function LandingPage(props) {
 
                 <div className='content'>
                     <h1><span>Connect</span> <span>with</span> <span className='orange'>different</span> <span>people</span></h1>
-                    <p>Essentially, This platform connects people and enable them to chat via voice messages</p>
+                    <p>Essentially, This platform connects people and enable them interract through messaging</p>
                     <button onClick={toGuide}>Get Started</button>
                 </div>
             </div>
@@ -71,7 +80,7 @@ function LandingPage(props) {
                     <h2>Enjoy while networking</h2>
                     <p>By signing up, you will get instant connections to over 50,000 people using this platform. In here, you will be able to network 
                         and know different people. You can refer your friends to this platform via your referral link,
-                         share out your profile to different people so as to gain fame.<br/>
+                         you can share out your profile link to different people to gain publicity.<br/>
                         <Link to='/guide'>Learn more</Link>
                     </p>
                 </article>
@@ -79,9 +88,9 @@ function LandingPage(props) {
 
             <section className='share-voice'>
                 <article>
-                    <h2>Share voice messages</h2>
-                    <p>The primarial use of this platform is to send voice messages to a large audience.
-                        The people receiving the messages might be potential buyers, friends, investors or work collegues. <br/>
+                    <h2>Share text messages</h2>
+                    <p>The primarial use of this platform is sending messages to a large audience.
+                        The people receiving the messages might be potential buyers of your products, friends, investors or work collegues. <br/>
                         <Link to='/guide'>Learn more</Link>
                     </p>
                 </article>
@@ -145,6 +154,8 @@ function LandingPage(props) {
                     <p>If you face any technical issue, contact us by filling the form and submitting.</p>
                     <h2>For Business talks</h2>
                     <p>Contact us, if you are a client looking for a web developer to hire, for your business, organization or a social website.</p>
+                    <h2>Became a patron</h2>
+                    <p>You can support our open source project by donating and support the good course, <a href='#' onClick={showSupport}><b>Be a patron</b></a>.</p>
                 </div>
                 <form onSubmit={handleEmail}>
                     <label>Name</label>

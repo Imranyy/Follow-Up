@@ -55,6 +55,8 @@ function LoginNav({userUI, adminUI}) {
                     <ul>
                         <li><Link to='/topics' onClick={closeMenu}><FaHome/></Link></li>
                         <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`} onClick={closeMenu}><FaUser/></Link></li>
+                        <li><a href='#' onDoubleClick={closeUsers} onClick={showUsers} title='Toggle Users modal'><FaUserFriends/></a></li>
+                        <li onClick={closeUsers}><Link to='/chats' title='chats'><BsFillChatDotsFill/></Link></li>
                     </ul>
                 </div>
             </div>   

@@ -15,6 +15,26 @@
     font-size: medium;
     width: 60vw;
   }
+  .all-users-page{
+    position: fixed;
+    background: orange;
+    top: 0;
+    bottom: 0;
+    left: 30vw;
+    right: 0;
+   }
+   .all-users-page .card{
+    width: 50vw;
+  }
+  .topics-page .chat-window .card{
+    width: 60vw;
+    margin: 20px 0;
+    padding: 6px 20px;
+    border-radius: 10px;
+    box-shadow:0 2px 4px 0 rgba(0,0,0,.2);
+    background:#f2f2f2;
+    cursor: pointer;
+  }
 }
 @media screen and (max-width:750px){
   .content h1{
@@ -60,7 +80,7 @@
 }
 
 @media screen and (max-width:600px){
-  
+ 
   .content h1{
     font-size: 30px;
   }
@@ -68,7 +88,69 @@
     font-size: 18px;
     line-height: normal;
   }
-  
+  .nav-bar .side-bar{
+    display: none;
+  }
+  .nav-bar .brand-name a{
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    font-size: 7vw;
+    font-weight:900;
+    text-decoration: none;
+    border: none;
+  }
+  .chat-page{
+    padding: 120px  5vw;
+  }
+  .chat-page .chat-window .card{
+    padding: 6px;
+    width: fit-content;
+    height: fit-content;
+  }
+  .chat-page .chat-window .card img{
+    width: 40px;
+    height: 40px;
+  }
+  .chat-page .chat-window .card .content p{
+    width: 40vw;
+    font-size: medium;
+  }
+  .chat-page form{
+    padding:10px 30px 2vw 20px;
+  }
+  .chat-page form button{
+    font-size: small;
+    width: 16vw;
+  }
+  .all-users-page{
+    position: fixed;
+    background: orange;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+   }
+   .all-users-page .card{
+    width: 65vw;
+  }
+  .topics-page{
+    /* padding: 120px  5vw; */
+    padding: 120px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .topics-page .chat-window .card{
+    width:75vw;
+  }
+  .topics-page .chat-window .card .content p{
+    width: 45vw;
+    font-size: medium;
+  }
+  .profile-page{
+    padding: 150px  50px 50px 50px;
+  }
 }
 
 @media screen and (max-width:550px){
@@ -100,6 +182,24 @@
   }
   .share-voice article{
     font-size: 15px;
+  }
+  .support .card{
+    line-height: 25px;
+    font-size: 7px;
+    padding: 20px 20px;
+    height: fit-content;
+    border-radius: 20px;
+  }
+  .support .card .close{
+    float: right;
+    width: 50px;
+    margin: 5px 5px;
+
+  }
+.support .card input{
+    width: 150px;
+    height: 30px;
+    margin: 5px 0;
   }
 }
 

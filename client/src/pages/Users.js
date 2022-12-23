@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import img from '../assests/comp.png';
 
 function Users({userUI, adminUI}) {
     const [data,setData]=useState([]);
@@ -67,7 +66,7 @@ const handleSearch=(e)=>{
             return(
                 <div className='card' key={data._id}>
                     <div className='card-image'>
-                        <a href={`${img}`} target='_blank' rel='noopener'><img src={img} alt='.'/></a>
+                        <a href={data.pic} target='_blank' rel='noreferrer'><img src={data.img} alt='.'/></a>
                     </div>
                     <div className='content'>
                         <p>{data.username}</p>
@@ -86,7 +85,7 @@ const $Data=data.map(data=>{
         return(
             <div className='card' key={data._id}>
                 <div className='card-image'>
-                    <a href={`${img}`} target='_blank' rel='noopener'><img src={img} alt='.'/></a>
+                    <a href={data.pic} target='_blank' rel='noreferrer'><img src={data.pic} alt='.'/></a>
                 </div>
                 <div className='content'>
                     <p>{data.username}</p>

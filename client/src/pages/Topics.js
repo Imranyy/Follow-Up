@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { toast } from 'react-hot-toast';
 import LoginNav from '../components/LoginNav';
-import img1 from '../assests/anime.png';
+import img1 from '../assests/msg1.png';
 
 function Topics({userUI, adminUI}) {
     const [data,setData]=useState('');
@@ -48,11 +48,11 @@ const preloaderOff=()=>{
                                 <a href={`${img1}`} target='_blank' rel='noopener'><img src={img1} alt='.'/></a>
                             </div>
                             <div className='content'>
-                                <div style={{display:'flex',justifyContent:'space-between'}}><h3>Topic</h3> <small>Added on {data.createdAt.slice(0,10)}</small></div><br/>
+                                <div style={{display:'flex',justifyContent:'space-between'}}><h3>Topic</h3> <small style={{padding:'0 5px 0 20vw'}}>Added on {data.createdAt.slice(0,10)}</small></div><br/>
                                 <p>#{data.message?data.message:'No message'}</p>
-                                <small style={{fontSzie:'12px',fontFamily:'monospace',paddingLeft:'14vw'}}>{data.createdAt.slice(11,16)}</small>
+                            <small style={{fontSzie:'12px',fontFamily:'monospace',padding:'14vw 5px 0 40vw'}}>{data.createdAt.slice(11,16)}</small>
                             </div>
-                           </div>
+                        </div>
                     ))}
                 </div>
 

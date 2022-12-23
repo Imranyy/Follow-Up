@@ -62,9 +62,9 @@ const preloaderOff=()=>{
             <LoginNav userUI={userUI} adminUI={adminUI}/>
             <div className='profile-page'>
             <div key={userData._id}>
-                <h1>Pic {userData.pic}</h1>
+                <img src={userData.pic} width={90} height={90} alt='..'/> 
                 <h2>{userData.username}</h2>
-                <h3>{userData.email}</h3>
+                <h3>{userData.email}</h3><br/>
                 <button className='sign-out-btn' onClick={logOut} >Sign Out</button>
             </div>
             </div>
