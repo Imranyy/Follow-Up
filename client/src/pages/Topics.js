@@ -9,7 +9,7 @@ function Topics({userUI, adminUI}) {
     const getData=async()=>{
         try{
             preloader()     
-            const url='https://follow-up-api-production.up.railway.app/api/topics';
+            const url='https://follow-up-api.onrender.com/api/topics';
             const response=await fetch(url,{
                 method:"GET"
             })

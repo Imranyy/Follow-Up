@@ -10,7 +10,7 @@ function SignIn({userUI,adminUI}) {
     const handleLogin=async(e)=>{
         e.preventDefault();
         try {
-            const url=`https://follow-up-api-production.up.railway.app/api/login`;
+            const url=`https://follow-up-api.onrender.com/api/login`;
             const response= await fetch(url,{
                 method:"POST",
                 body:JSON.stringify({

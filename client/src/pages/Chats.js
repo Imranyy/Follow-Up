@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import LoginNav from '../components/LoginNav';
 import io from 'socket.io-client';
 
-const socket=io.connect('https://follow-up-api-production.up.railway.app/')
+const socket=io.connect('https://follow-up-api.onrender.com')
 function Chats({userUI, adminUI}) {
     const [data,setData]=useState('');
     const [message,setMessage]=useState('');
