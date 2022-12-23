@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/api',require('./routes/api'));
 
 //connecting to db then listening to server
-mongoose.connect(process.env.LOCALURI,{
+mongoose.connect(process.env.DATABASE,{
     useUnifiedTopology:true,
     useNewUrlParser:true
 }).then(()=>{
