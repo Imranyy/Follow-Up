@@ -731,7 +731,8 @@ footer ul li a:hover{
 }
 .topics-page .chat-window .card{
   display: flex;
-  width: 20vw;
+  /* width: 20vw; */
+  width: fit-content;
   margin: 20px 0;
   padding: 6px 20px;
   border-radius: 10px;
@@ -749,6 +750,9 @@ footer ul li a:hover{
 }
 .topics-page .chat-window .card .content{
   padding: 20px 0 20px 10px;
+}
+.topics-page .chat-window .card .content p{
+  width: 20vw;
 }
 
 /* profile-page */

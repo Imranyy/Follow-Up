@@ -31,17 +31,19 @@ mongoose.connect(process.env.LOCALURI,{
         cors: {}
     });
     io.on('connection',(socket)=>{
-        //getting the chats from db
-        Chat.find().then(res=>{
-            socket.emit('output',res)
-        });
+        socket.on('output',()=>{
+            //getting the chats from db
+            Chat.find().then(res=>{
+                socket.emit('output',res)
+            });
+        })
         socket.on('chat',(data)=>{
             //posting chats on db
             const {pic,username,message,userID}=data;
             const msg=new Chat({pic,username,message,userID});
             msg.save().then(()=>{
                 //emitting chats to sockets
-               io.emit('chat',data)
+               socket.emit('chat',data)
             })
         })
     })

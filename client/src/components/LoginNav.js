@@ -31,19 +31,19 @@ function LoginNav({userUI, adminUI}) {
     }
     return (
         <>
-            <nav className='nav-bar logged-in' style={{display:'none'}}>
+            <nav className='nav-bar logged-in' >
                 <div className='side-bar'>
                     <ul>
-                        <li onClick={closeUsers}><Link to='/topics'><FaHome/></Link></li>
-                        <li><a href='#' onDoubleClick={closeUsers} onClick={showUsers}><FaUserFriends/></a></li>
-                        <li onClick={closeUsers}><Link to='/chats'><BsFillChatDotsFill/></Link></li>
+                        <li onClick={closeUsers}><Link to='/topics' title='Topics'><FaHome/></Link></li>
+                        <li><a href='#' onDoubleClick={closeUsers} onClick={showUsers} title='Toggle Users modal'><FaUserFriends/></a></li>
+                        <li onClick={closeUsers}><Link to='/chats' title='chats'><BsFillChatDotsFill/></Link></li>
                     </ul>
                 </div>
                 <div className='nav-bar' onClick={closeUsers}>
                     <div className='brand-name'><Link to='/home'>Follow up🐌</Link></div>
                     <ul className='nav-item'>
-                        <li className='logged-in' style={{display:'none'}}><Link to='/topics'><FaHome/></Link></li>
-                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`}><FaUserCircle/></Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to='/topics' title='Topics'><FaHome/></Link></li>
+                        <li className='logged-in' style={{display:'none'}}><Link to={`/user/${localStorage.getItem('username')}`} title='Profile'><FaUserCircle/></Link></li>
                         <li><button onClick={showMenu} className='menu-btn'><AiOutlineMenu/></button></li>
                     </ul>
                 

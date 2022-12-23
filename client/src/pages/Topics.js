@@ -16,7 +16,6 @@ function Topics({userUI, adminUI}) {
             preloaderOff()
             const parseRes=await response.json();
             setData(parseRes)
-            console.log(parseRes)
         }catch(err){
             preloaderOff()
             toast.error('Network Error!')

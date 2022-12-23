@@ -5,69 +5,46 @@ import img from '../assests/comp.png';
 import img1 from '../assests/anime.png';
 import io from 'socket.io-client';
 
-const socket=io.connect('https://localhost:5000');
+const socket=io.connect('http://localhost:5000')
 function Chats({userUI, adminUI}) {
     const [data,setData]=useState('');
     const [message,setMessage]=useState('');
+    const[out,setOut]=useState('')
 
    const handleSubmit=async(e)=>{
     e.preventDefault();
     try {
         socket.emit('chat',{
-            userID:localstorage.getItem('userID'),    
+            userID:localStorage.getItem('userID'),    
             pic:localStorage.getItem('pic'),
             username:localStorage.getItem('username'),
             message:message
         });
-        const data={
-            pic:localStorage.getItem('pic'),
-            userID:localStorage.getItem('userID'),
-            username:localStorage.getItem('username'),
-            message
-        }
-        //submitting message to API
-        // userID,pic,username,message
-        const url=`http://localhost:5000/api/upload`
-        const response =await fetch(url,{
-            method:'POST',
-            body:JSON.stringify(data),
-            headers:{
-                "authorization":`Bearer ${sessionStorage.getItem('userToken')}`,
-                "content-type":"application/json"
-            }
+        toast.success("Message Sent")
+        socket.on('chat',data=>{
+            setOut(data);
         })
-        const parseRes=await response.json();
-        if(parseRes.error){
-            toast.error(parseRes.error)
-        }else{
-            toast.success(parseRes.msg)
-            document.querySelector('form').reset()
-        }
+        document.querySelector('form').reset()
     } catch (error) {
         toast.error('Network Error')
     }
    }
     
-    //get all data
-    const getData=async()=>{
-        try{
-            preloader()     
-            const url='http://localhost:5000/api/data';
-            const response=await fetch(url,{
-                method:"GET"
-            })
-            preloaderOff()
-            const parseRes=await response.json();
-            setData(parseRes)
-        }catch(err){
-            preloaderOff()
-            toast.error('Network Error!')
-        }
-    } 
-    
     useEffect(()=>{
-        getData()
-    },[]);
+         //getting chats
+         socket.emit('output','hy')
+         socket.on('output',res=>{
+         preloader()     
+             setData(res);
+             preloaderOff()
+            })
+
+        },[data]);
+
+       const down=()=>{
+            document.querySelector('.down').scrollIntoView()
+        }
+        
     //preloader
   const preloader=()=>{
     const loader=document.querySelector('.preload');
@@ -81,12 +58,12 @@ const preloaderOff=()=>{
         <>
         <div className='preload'></div>
         <LoginNav userUI={userUI} adminUI={adminUI}/>
-            <div className='chat-page'>
+            <div className='chat-page' onLoad={down}>
                     <div className='chat-window'>
                         {data&&data.map(data=>{
                             if(data.username===localStorage.getItem('username')){
                                 return(
-                                    <div className='right' key={data._id}>
+                                        <div className='right' key={data._id}>
                                         <div className='card' title={`Sent on ${data.createdAt.slice(0,10)}`}>
                                             <div className='card-image'>
                                                 <a href={`${img}`} target='_blank' rel='noopener'><img src={img} alt='.'/></a>
@@ -115,10 +92,11 @@ const preloaderOff=()=>{
                                 )
                             }
                         })}
+                        
                 </div>
-
+                        <div className='down'></div>
                 <form onSubmit={handleSubmit}>
-                    <textarea placeholder='Message' onChange={e=>setMessage(e.target.value)} autoCorrect={true} autoComplete={true}></textarea>
+                    <textarea placeholder='Message' onChange={e=>setMessage(e.target.value)} autoCorrect="true" autoComplete="true"></textarea>
                     <button>Send</button>
                 </form>
             </div>
