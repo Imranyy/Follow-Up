@@ -10,7 +10,7 @@ function Users({userUI, adminUI}) {
     const getUsers=async()=>{
         try {
             preloader();
-            const url='http://localhost:5000/api/users';
+            const url='https://follow-up-api-production.up.railway.app/api/users';
             const response=await fetch(url,{
                 method:"GET",
                 headers:{

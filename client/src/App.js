@@ -22,7 +22,7 @@ function App() {
     try{
         preloader();
         if(sessionStorage.getItem('adminToken')){
-          const url='http://localhost:5000/api/admins/verify';
+          const url='https://follow-up-api-production.up.railway.app/api/admins/verify';
           const response=await fetch(url,{
             method:"GET",
             headers:{
@@ -37,7 +37,7 @@ function App() {
             parseRes===true?setIsAdminAuth(true):setIsAdminAuth(false)
           }
       }else{
-        const url='http://localhost:5000/api/verify';
+        const url='https://follow-up-api-production.up.railway.app/api/verify';
             const response=await fetch(url,{
               method:"GET",
               headers:{

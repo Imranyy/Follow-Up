@@ -30,7 +30,7 @@ function SignUp({userUI,adminUI}) {
                        });
 
                        const $username=username.charAt(0).toLowerCase()+ username.slice(1);
-                       const url=`http://localhost:5000/api/register`;
+                       const url=`https://follow-up-api-production.up.railway.app/api/register`;
                        const response= await fetch(url,{
                            method:"POST",
                            body:JSON.stringify({

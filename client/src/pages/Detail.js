@@ -11,7 +11,7 @@ function Detail({userUI, adminUI}) {
     const getUserDetails=async()=>{
         try {
             preloader();
-            const url=`http://localhost:5000/api/users/${username}`;
+            const url=`https://follow-up-api-production.up.railway.app/api/users/${username}`;
             const response=await fetch(url,{
                 method:"GET",
                 headers:{
