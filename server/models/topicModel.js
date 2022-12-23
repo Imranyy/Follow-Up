@@ -7,7 +7,7 @@ const topicSchema=mongoose.Schema({
     pic:{
         type:String
     },
-    username:{
+    adminname:{
         type:String,
         require:true
     },
@@ -19,5 +19,5 @@ const topicSchema=mongoose.Schema({
     timestamps:true
 });
 
-const topicModel=mongoose.model('audio',topicSchema);
+const topicModel=mongoose.model('topic',topicSchema);
 module.exports=topicModel;

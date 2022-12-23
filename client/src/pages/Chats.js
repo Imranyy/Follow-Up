@@ -3,7 +3,9 @@ import { toast } from 'react-hot-toast';
 import LoginNav from '../components/LoginNav';
 import img from '../assests/comp.png';
 import img1 from '../assests/anime.png';
+import io from 'socket.io-client';
 
+const socket=io.connect('https://localhost:5000');
 function Chats({userUI, adminUI}) {
     const [data,setData]=useState('');
     const [message,setMessage]=useState('');
@@ -11,25 +13,35 @@ function Chats({userUI, adminUI}) {
    const handleSubmit=async(e)=>{
     e.preventDefault();
     try {
-        //submitting message to API
-        const url=`http:localhost:5000/api/upload`
-        const response=await fetch(url,{
-            method:'POST',
-            body:JSON.stringify({
+        socket.emit('chat',{
+            userID:localstorage.getItem('userID'),    
+            pic:localStorage.getItem('pic'),
+            username:localStorage.getItem('username'),
+            message:message
+        });
+        const data={
             pic:localStorage.getItem('pic'),
             userID:localStorage.getItem('userID'),
-            email:localStorage.getItem('email'),
+            username:localStorage.getItem('username'),
             message
-            }),
+        }
+        //submitting message to API
+        // userID,pic,username,message
+        const url=`http://localhost:5000/api/upload`
+        const response =await fetch(url,{
+            method:'POST',
+            body:JSON.stringify(data),
             headers:{
-                'authorization':`Bearer ${sessionStorage.getItem('userToken')}`
+                "authorization":`Bearer ${sessionStorage.getItem('userToken')}`,
+                "content-type":"application/json"
             }
         })
         const parseRes=await response.json();
         if(parseRes.error){
             toast.error(parseRes.error)
         }else{
-            toast.success(parseRes.msg);
+            toast.success(parseRes.msg)
+            document.querySelector('form').reset()
         }
     } catch (error) {
         toast.error('Network Error')
@@ -74,8 +86,8 @@ const preloaderOff=()=>{
                         {data&&data.map(data=>{
                             if(data.username===localStorage.getItem('username')){
                                 return(
-                                    <div className='right'>
-                                        <div key={data._id} className='card' title={`Sent on ${data.createdAt.slice(0,10)}`}>
+                                    <div className='right' key={data._id}>
+                                        <div className='card' title={`Sent on ${data.createdAt.slice(0,10)}`}>
                                             <div className='card-image'>
                                                 <a href={`${img}`} target='_blank' rel='noopener'><img src={img} alt='.'/></a>
                                             </div>
@@ -106,7 +118,7 @@ const preloaderOff=()=>{
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                    <textarea placeholder='Message' onChange={e=>setMessage(e.target.value)}></textarea>
+                    <textarea placeholder='Message' onChange={e=>setMessage(e.target.value)} autoCorrect={true} autoComplete={true}></textarea>
                     <button>Send</button>
                 </form>
             </div>

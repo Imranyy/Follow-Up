@@ -52,9 +52,21 @@ a{
   right: 0;
   top: 0;
   height: 80px;
-  /* box-shadow:0 2px 4px 0 rgba(0,0,0,.2); */
   z-index: 100;
   border-bottom:2px solid rgba(0,0,0,.2);
+}
+.nav-bar .nav-item a{
+  padding: 7px 7px;
+  font-size: 25px;
+  color: orange;
+  border-radius: 50px;
+  transition: ease-in-out 500ms;
+}
+.nav-bar .nav-item a:hover{
+  border-radius: 10px;
+  color: white;
+  background: orange;
+  border: none;
 }
 .nav-bar .side-bar{
   position: fixed;
@@ -73,14 +85,19 @@ a{
   padding: 20px 0;
 }
 .nav-bar .side-bar ul li a{
-  padding:7px 8px;
-  border-radius: 90px;
-  background: white;
-  color: orange;
+  border-radius: 50px;
+  /* background: rgb(17, 78, 78); */
+  color: white;
   font-size: 25px;
+  transition: ease-in-out 500ms;
+  padding:7px 8px;
 }
 .nav-bar .side-bar ul li a:hover{
+  padding:7px 8px;
+  border-radius: 10px;
   border: none;
+  color: orange;
+  background: white;
 }
 
 .nav-bar .brand-name a{
@@ -574,6 +591,7 @@ footer ul li a:hover{
   padding: 6px 20px;
   border-radius: 10px;
   background:orange;
+  width: fit-content;
 }
 .chat-page .chat-window .card img{
   border-radius: 50px;
@@ -585,6 +603,10 @@ footer ul li a:hover{
 }
 .chat-page .chat-window .card .content{
   padding: 20px 0 20px 10px;
+}
+.chat-page .chat-window .card .content p{
+  width: 220px;
+  line-height: 24px;
 }
 .chat-page form{
   position: fixed;
@@ -699,10 +721,36 @@ footer ul li a:hover{
 .topics-page{
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding: 120px  50px 50px 150px;
   background: url('../assests/whitebg.jpg');
 }
+.topics-page .chat-window{
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 70px 0;
+}
+.topics-page .chat-window .card{
+  display: flex;
+  width: 20vw;
+  margin: 20px 0;
+  padding: 6px 20px;
+  border-radius: 10px;
+  box-shadow:0 2px 4px 0 rgba(0,0,0,.2);
+  background:#f2f2f2;
+  cursor: pointer;
+}
+.topics-page .chat-window .card img{
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+}
+.topics-page .chat-window .card a:hover{
+  border:none;
+}
+.topics-page .chat-window .card .content{
+  padding: 20px 0 20px 10px;
+}
+
 /* profile-page */
 .profile-page{
   padding: 150px  50px 50px 150px;

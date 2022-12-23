@@ -1,10 +1,11 @@
 const User=require('../models/userModel');
 const Admin=require('../models/adminModel');
 const Chat=require('../models/chatModel');
+const Topic=require('../models/topicModel');
 const mongoose=require('mongoose')
 const bcrypt=require('bcryptjs');
-const jwt=require('jsonwebtoken')
-require('dotenv').config()
+const jwt=require('jsonwebtoken');
+require('dotenv').config();
 
 //register user
 const registerUser=async(req,res)=>{
@@ -320,14 +321,14 @@ const adminDeleteAnyData=async(req,res)=>{
 }
 
 //get all  data (users and admins)
-const getData=async(req,res)=>{
-    try {
-        const data=await Chat.find({});
-        res.send(data);
-    } catch (error) {
-        res.status(500).send(error.message)
-    }
-}
+// const getData=async(req,res)=>{
+//     try {
+//         const data=await Chat.find({});
+//         res.send(data);
+//     } catch (error) {
+//         res.status(500).send(error.message)
+//     }
+// }
 
 //delete a data (only the user who added the data can delete it)
 const deleteData=async(req,res)=>{
@@ -354,17 +355,51 @@ const deleteData=async(req,res)=>{
     }
 }
 
-//upload an audio
-const uploadMessage=async(req,res)=>{
-   try {
-    const {userID,pic,username,message}=req.body;
-    const audio= await Chat.create({
-        userID,pic,username,message
-    })
-    res.status(200).send({msg:'Message Sent'})
-   } catch (error) {
-    res.status(500).send({error:"Failed to send!"});
-   }
+//upload a message
+// const uploadMessage=async(req,res)=>{
+//    try {
+//     const {userID,pic,username,message}=req.body;
+//     if(userID&&pic&&username&&message){
+//         await Chat.create({
+//             userID,pic,username,message
+//         })
+//         res.status(200).send({msg:'Message Sent'})
+//     }else{
+//         res.send({error:"Message not sent, please enter all fields"})
+//     }
+//    } catch (error) {
+//     res.status(500).send({error:"Failed to send!",error});
+//    }
+// }
+
+//upload topics
+const uploadTopic=async(req,res)=>{
+    try {
+        const {userID,pic,adminname,message}=req.body;
+        const topicExist=await Topic.findOne({message});
+        if(topicExist){
+            res.send({error:'This topic exist!'})
+        }else{
+            if(userID&&pic&&adminname&&message){
+                await Topic.create({userID,pic,adminname,message});
+                res.status(200).send({msg:"Topic added"})
+            }else{
+                res.send({error:'Please enter all fields!'})
+            }
+        }
+    } catch (error) {
+        res.status(500).send({error:error.message});
+    }
+}
+
+//getAllTopic
+const getTopics=async(req,res)=>{
+    try {
+        const getTopic=await Topic.find({})
+        res.status(200).send(getTopic)
+    } catch (error) {
+        res.status(500).send({error:error.message});
+    }
 }
 
 module.exports={
@@ -375,9 +410,9 @@ module.exports={
     loginUser,
     getUserInfo,
     deleteUser,
-    getData,
+    // getData,
     deleteData,
-    uploadMessage,
+    // uploadMessage,
     getUsers,
     loginAdmin,
     registerAdmin, 
@@ -385,4 +420,6 @@ module.exports={
     getAdminInfo,
     deleteAdmin,
     adminDeleteAnyData,
+    uploadTopic,
+    getTopics,
 }

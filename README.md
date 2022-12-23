@@ -1,10 +1,10 @@
-# Podcast🎙
-### Podcast is an audio streaming platform. it connects people and makes networking easy. In this platform, people chat through audio messages, users record they voices and sends them to other connected users. Basically, chatting via voice messages. The production site is called [Voice Tweet](https://voice-tweet-online.web.app) but the project is called Podcast.
+# Follow Up🐌
+### Follow Up is a messaging  platform. it connects people and makes networking easy. View the site at [**Follow-up-com**](https://voice-tweet-online.web.app "Visit Follow up ")..
 <br/>
 
-# Deploy🚀
+# Deployment 🚀
 This project is host on firebase.
-View app at **[Voice Tweet](https://voice-tweet-online.web.app)**.
+View app at **[Follow-up-com](https://voice-tweet-online.web.app)**.
 
 And the API was deployed on Render.
 <br/>
@@ -15,15 +15,20 @@ Stacks used in this project are :
 | Client |  Server |  Database  |
 |------- |-------- |------------|
 |Reactjs |  Nodejs |  MongoDB   |
-|Firebase|Expressjs|            |
+|        |Expressjs|            |
+|        |Firebase |            |
 
 <br/>
 
 # Run it locally💻
 To run this project on your machine your have to clone or fork this project.
-To clone :
+Fork the project [__Fork__](https://github.com/imranyy/Follow-Up)
+
+or
+
+Clone it :
 ```bash
-git clone https://github.com/imrany/podcast.git 
+git clone https://github.com/imranyy/Follow-Up.git 
 ```
 To run client side code you must first install dependencies :
 ```bash
@@ -38,32 +43,31 @@ npm install
 node index
 ```
 # Developers 😎
-Developed by [Imrany](https://github.com/imranyy).
+Developed by [Imrany](https://github.com/imranyy)
 
-Worked on 
+> Worked on 
 
-[*] Web design on figma
+* [x] Web design on figma
 
-[*] Reactjs
+* [x] Reactjs
 
-[*] Firebase
+* [x] Connecting to Firebase
 
-[*] Creating a REST API
+* [x] Creating a REST API
 
-[*] Connecting to mongoDB 
+* [x] Connecting to mongoDB 
 
-[*] Worked on continuous Deployment and integration with github actions.
+* [x] Worked on continuous Deployment and integration with github actions.
 
-[*] Deploying the site 
+* [x] Deploying the site 
 
 # Other Documentations 📰
 * [FrontEnd Documentation](./client/README.md)
 * [API Documentation](./server/readme.md)
 
-## Social Media Links
+# Social Media Links 🔗
 
----
-* [github](https://github.com/imrany)
-* [instagram](https://instagram.com/imrany00)
-* [Twitter](https://twitter.com/imran_matano)
-* Text me on [Whatsapp](https://wa.me/+254754423664)
+* View my [Github](https://github.com/imrany "My github profile") profile.
+* Follow me on [Instagram](https://instagram.com/imrany00 "My instagram account").
+* Follow me on [Twitter](https://twitter.com/imran_matano "My twitter account").
+* Text me on [Whatsapp](https://wa.me/+254754423664 "Link to my whatsapp").

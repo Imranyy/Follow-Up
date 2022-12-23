@@ -19,5 +19,5 @@ const chatSchema=mongoose.Schema({
     timestamps:true
 });
 
-const chatModel=mongoose.model('audio',chatSchema);
+const chatModel=mongoose.model('chat',chatSchema);
 module.exports=chatModel;
