@@ -1,42 +1,11 @@
-import React,{useState,useEffect} from 'react';
-import { toast } from 'react-hot-toast';
+import React from 'react';
 import LoginNav from '../components/LoginNav';
 import img1 from '../assests/msg1.png';
 
-function Topics({userUI, adminUI}) {
-    const [data,setData]=useState('');
-    //get Topics
-    const getData=async()=>{
-        try{
-            preloader()     
-            const url='https://follow-up-api.onrender.com/api/topics';
-            const response=await fetch(url,{
-                method:"GET"
-            })
-            preloaderOff()
-            const parseRes=await response.json();
-            setData(parseRes)
-        }catch(err){
-            preloaderOff()
-            toast.error('Network Error!')
-        }
-    } 
-    
-    useEffect(()=>{
-        getData()
-    },[]);
-    //preloader
-  const preloader=()=>{
-    const loader=document.querySelector('.preload');
-    loader.style.display='block';
-}
-const preloaderOff=()=>{
-    const loader=document.querySelector('.preload');
-    loader.style.display='none';
-}
+function Topics({userUI, adminUI, data}) {
     return (
         <>
-        <div className='preload'></div>
+        {/* <div className='preload'></div> */}
         <LoginNav userUI={userUI} adminUI={adminUI}/>
             <div className='topics-page'>
                 <h2>Topics</h2>{sessionStorage.getItem('userToken')?(<sub>(Only admins can add topics)</sub>):(<></>)}

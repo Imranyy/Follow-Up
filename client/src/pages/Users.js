@@ -9,7 +9,6 @@ function Users({userUI, adminUI}) {
       
     const getUsers=async()=>{
         try {
-            preloader();
             const url='https://follow-up-api.onrender.com/api/users';
             const response=await fetch(url,{
                 method:"GET",
@@ -17,30 +16,20 @@ function Users({userUI, adminUI}) {
                     "authorization":`Bearer ${sessionStorage.getItem('userToken')}`
                 }
             })
-            preloaderOff();
             const parseRes=await response.json();
             if(parseRes.error){
-                // toast.error(parseRes.error);
+                toast.error(parseRes.error);
             }else{
                 setData(parseRes);
             }
         } catch (error) {
-            preloaderOff();
             toast.error('Network Error');
         }
     }
     useEffect(()=>{
         getUsers();
     },[])
-    //preloader
-  const preloader=()=>{
-    const loader=document.querySelector('.preload');
-    loader.style.display='block';
-}
-const preloaderOff=()=>{
-    const loader=document.querySelector('.preload');
-    loader.style.display='none';
-}
+    
  if(userUI===false){
   loggedinLink.forEach(item=>item.style.display='none')
   loggedoutLink.forEach(item=>item.style.display='block')
@@ -99,8 +88,6 @@ const $Data=data.map(data=>{
     
     return (
         <>
-            <div className='preload'></div>
-
             <div className='bg' onDoubleClick={closeUsers}>
                 <div className='all-users-page logged-in' style={{display:'none'}}>
                     <input type='search' placeholder='&#128269;  Search' onChange={handleSearch}/>

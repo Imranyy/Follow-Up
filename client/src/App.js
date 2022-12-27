@@ -16,6 +16,7 @@ import Topics from './pages/Topics';
 function App() {
   const [isUserAuth,setIsUserAuth]=useState('');
   const [isAdminAuth,setIsAdminAuth]=useState('');
+  const [data,setData]=useState('');
 
   //check ui
   const checkUi=async()=>{
@@ -31,13 +32,10 @@ function App() {
           })
           preloaderOff()
           const parseRes=await response.json();
-          if(parseRes.error){
-            // toast.error(parseRes.error)
-          }else{
             parseRes===true?setIsAdminAuth(true):setIsAdminAuth(false)
-          }
       }else{
         const url='https://follow-up-api.onrender.com/api/verify';
+        preloader()
             const response=await fetch(url,{
               method:"GET",
               headers:{
@@ -46,11 +44,7 @@ function App() {
             })
             preloaderOff()
             const parseRes=await response.json();
-            if(parseRes.error){
-              // toast.error(parseRes.error)
-            }else{
-              parseRes===true?setIsUserAuth(true):setIsUserAuth(false)
-            }
+            parseRes===true?setIsUserAuth(true):setIsUserAuth(false)
       }
     }catch(err){
         preloaderOff();
@@ -58,7 +52,23 @@ function App() {
     }
 
   }
+
+  //get Topics
+  const getData=async()=>{
+    try{
+        const url='https://follow-up-api.onrender.com/api/topics';
+        const response=await fetch(url,{
+            method:"GET"
+        })
+        const parseRes=await response.json();
+        setData(parseRes)
+    }catch(err){
+        toast.error('Network Error!')
+    }
+}
+
   useEffect(()=>{
+    getData();
     checkUi();
   },[]);
 
@@ -77,10 +87,10 @@ const preloaderOff=()=>{
     <Toaster/>
     <Users/>
     <Routes>
-      <Route path='/' element={isUserAuth||isAdminAuth?(<Topics userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>
-      <Route path='/topics' element={isUserAuth||isAdminAuth?(<Topics userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>
-      <Route path='/login' element={isUserAuth||isAdminAuth?(<Topics userUI={isUserAuth} adminUI={isAdminAuth}/>):(<SignIn userUI={isUserAuth} adminUI={isAdminAuth}/>)}/>
-      <Route path='/register' element={isUserAuth||isAdminAuth?(<Topics userUI={isUserAuth} adminUI={isAdminAuth}/>):(<SignUp userUI={isUserAuth} adminUI={isAdminAuth}/>)}/>
+      <Route path='/' element={isUserAuth||isAdminAuth?(<Topics data={data}  userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>
+      <Route path='/topics' element={isUserAuth||isAdminAuth?(<Topics  data={data} userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>
+      <Route path='/login' element={isUserAuth||isAdminAuth?(<Topics data={data}  userUI={isUserAuth} adminUI={isAdminAuth}/>):(<SignIn userUI={isUserAuth} adminUI={isAdminAuth}/>)}/>
+      <Route path='/register' element={isUserAuth||isAdminAuth?(<Topics data={data}  userUI={isUserAuth} adminUI={isAdminAuth}/>):(<SignUp userUI={isUserAuth} adminUI={isAdminAuth}/>)}/>
       <Route path='/chats' element={isUserAuth||isAdminAuth?(<Chats userUI={isUserAuth} adminUI={isAdminAuth}/>):(<LandingPage/>)}/>
       <Route path='/guide' element={<Guide userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
       <Route path='/user/:username' element={<Detail userUI={isUserAuth} adminUI={isAdminAuth}/>}/>
