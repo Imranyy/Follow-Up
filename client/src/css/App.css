@@ -161,7 +161,7 @@ a:hover{
   left: 30%;
   bottom: 0;
   background: rgb(224, 217, 204);
-  padding: min(10vh,2rem) 0 0 20px;
+  padding: 80px 50px;
   transition: ease-out 2s;
 }
 .menu-list ul{
@@ -273,7 +273,7 @@ button:hover{
   left: 30%;
   bottom: 0;
   background: rgb(224, 217, 204);
-  padding: min(10vh,2rem) 0 0 20px;
+  padding: 80px 50px;
   transition: ease-out 2s;
 }
 .menu-bg .menu-list ul{

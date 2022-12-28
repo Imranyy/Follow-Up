@@ -49,7 +49,7 @@ function LoginNav({userUI, adminUI}) {
                 
                 </div>
             </nav>
-            <div className='menu-list-bg' onClick={closeMenu}>
+            <div className='menu-list-bg' onDoubleClick={closeMenu}>
                 <div className='menu-list'>
                     <button onClick={closeMenu}><AiOutlineCloseSquare/></button>
                     <ul>

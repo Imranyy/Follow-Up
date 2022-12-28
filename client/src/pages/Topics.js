@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import LoginNav from '../components/LoginNav';
 import img1 from '../assests/msg1.png';
+import { toast } from 'react-hot-toast';
 
 function Topics({userUI, adminUI}) {
   const [data,setData]=useState('');
