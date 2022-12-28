@@ -88,7 +88,7 @@ function Support(props) {
             <div className='card'>
                 <button className='close' onClick={closeSupport}>Close</button>
                 <div style={{display:'flex'}}>
-                    <img style={{marginBottom:'20px',marginTop:'-15px'}} width='50' heigth='30' src={coffee} alt='.'/>
+                    <img src={coffee} alt='.'/>
                     <h2>Be a patron...</h2>
                 </div>
                 <form className='form' onSubmit={submit} >
